@@ -1,52 +1,44 @@
-Mục tiêu
+Ý số một – Tiền xử lý khoảng cách gốc
 
-Tính Điểm gốc: tổng quãng đường ngắn nhất mà mỗi quân phải đi từ vị trí ban đầu tới Ô Đích khi chưa bỏ tường.
+Chạy duy nhất một lượt BFS ‒ bắt đầu từ ô Đích ‒ trên lưới gốc, coi ô tường là bị chặn.
 
-Tính Giá trị ròng: với từng ô có tường, thử “đập” đúng ô đó, tính lại tổng quãng đường, lấy phần giảm xuống; cộng tất cả phần giảm của mọi tường.
+Mảng kết quả dist_dest[r][c] chứa độ dài đường ngắn nhất từ mỗi ô trống tới Đích.
 
-Tính Điểm gốc
+Tính ngay tổng điểm ban đầu D bằng cách cộng dist_dest tại tất cả vị trí quân cờ.
 
-Chạy tìm-đường rộng (Bê E F S) một lần duy nhất từ Ô Đích tới mọi ô trống.
+Ý số hai – Khoảng cách riêng của từng quân
 
-Khoảng cách từ Đích tới ô của quân số i (gọi là “đê i”) có ngay trong bảng khoảng cách.
+Với mỗi quân cờ i (tối đa năm mươi quân), chạy BFS thứ hai bắt đầu từ ô của nó để nhận dist_pawn[i][r][c].
+Tổng số ô quét ≈ (N cộng một) nhân R nhân C ≈ hai triệu, hoàn toàn thoải mái với giới hạn.
 
-Cộng tất cả “đê i” ta được Điểm gốc, ký hiệu “đê lớn”.
+Ý số ba – Công thức cập-nhật khi phá một tường
+Gọi w là ô tường đang xét. Bốn ô kề của w ký hiệu n.
 
-Chuẩn bị để đánh giá mỗi ô tường
+Khoảng cách từ tường tới Đích sau khi đục
+cost_to_dest_w = 1 cộng min dist_dest[n] trên các n đi được.
 
-Liệt kê mọi ô tường, đánh số từ 0 đến w trừ một.
+Khoảng cách quân i qua tường w
+best_to_wall_i = 1 cộng min dist_pawn[i][n] (nằm sát tường).
+Đường mới của quân i: new_i = best_to_wall_i cộng cost_to_dest_w.
 
-Với mỗi ô tường, xét bốn ô kề (trên, dưới, trái, phải) – chỉ cần ô nào trống.
+Giảm điểm của tường
+gain_i = max(0, dist_dest[pawn_i] trừ new_i).
+Giá trị tường w bằng tổng gain_i trên mọi quân.
 
-Phần đường từ ô tường tới Đích sau khi phá tường bằng: “một bước để ra khỏi tường” cộng “khoảng cách nhỏ nhất từ một ô kề tới Đích”. Lưu giá trị này thành destPart[wall].
+Lý do đúng: khi chỉ mở đúng một ô, mọi đường đi mới ngắn hơn (nếu có) bắt buộc ghé qua chính ô vừa mở; công thức trên xét hết mọi khả năng ghé vào rồi ra khỏi ô đó trong hai bước một cộng một.
 
-Khoảng cách từ mỗi quân tới mọi ô
+Ý số bốn – Độ phức tạp
 
-Số quân nhỏ (không quá năm mươi) – ta chạy Bê E F S riêng cho từng quân để có bảng khoảng cách distPawn[i]. Chi phí tối đa hai triệu ô, thoải mái.
+Tiền xử lý: O( (N cộng một) nhân R nhân C ).
 
-Giá trị của một ô tường
+Đếm giá trị cho tất cả tường: O( số_tường nhân N ) ≤ bốn mươi nghìn nhân năm mươi ≈ hai triệu phép cộng so sánh.
 
-Với một tường đã chọn:
+Bộ nhớ: một mảng khoảng bốn mươi nghìn phần tử cho dist_dest cộng năm mươi mảng như vậy cho quân, tổng dưới mười megabyte.
 
-Với từng quân, tìm ô kề của tường gần quân nhất: lấy distPawn[i][neighbor] + một; chọn nhỏ nhất gọi enter.
+Ý số năm – Quy trình xuất kết quả
 
-Đường qua tường dài enter + destPart[wall].
+Sau vòng lặp qua mọi tường, cộng hết giá trị thu được thành Net Value.
 
-Đường tốt nhất của quân khi tường bị phá là min(đê i cũ, enter + destPart[wall]).
+In hai số nguyên: D và Net Value cho mỗi bộ dữ liệu trong một dòng.
 
-Cộng lại cho tất cả quân được NewScore của bàn sau khi phá tường.
-
-Giá trị của tường = đê lớn − NewScore (không âm).
-
-Giá trị ròng
-
-Lặp qua tất cả tường, cộng Giá trị của chúng.
-
-Độ phức tạp
-
-Một lần Bê E F S từ Đích + N lần từ quân: ô × (N+1) ≤ 2 × 10⁶.
-
-Vòng lặp tường × quân × tối đa 4 láng giềng: ≈ 8 × 10⁶ phép so sánh.
-
-Phù hợp với giới hạn.
-
+Mẹo cài đặt: để không tốn thời gian kiểm tra ô không hợp lệ, hãy viết hàm for four directions trả về n hợp lệ và không phải tường.
