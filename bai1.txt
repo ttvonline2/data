@@ -1,44 +1,33 @@
-Ý số một – Tiền xử lý khoảng cách gốc
+Ý số một: Khung tư duy tổng quát
+Biến lưới thành đồ thị vô hướng có trọng số bằng một. Khoảng cách ngắn nhất giữa hai ô chính là số bước BFS.
 
-Chạy duy nhất một lượt BFS ‒ bắt đầu từ ô Đích ‒ trên lưới gốc, coi ô tường là bị chặn.
+Ý số hai: Tính trước mọi khoảng cách từ Đích
+Chạy một BFS duy nhất xuất phát tại ô Đích. Lưu vào mảng Độ-Dài-Tới-Đích.
+Từ mảng này suy ra ngay quãng đường gốc của mỗi quân cờ, cộng lại thành Điểm-Số-Gốc D.
 
-Mảng kết quả dist_dest[r][c] chứa độ dài đường ngắn nhất từ mỗi ô trống tới Đích.
+Ý số ba: Ghi sẵn “giá mở” của từng tường đối với Đích
+Khởi tạo mảng Tối-Ưu-Đích-Tường.
+Duyệt từng ô trống, mỗi khi gặp tường kề bên, cập-nhật Tối-Ưu-Đích-Tường bằng Độ-Dài-Tới-Đích của ô trống cộng một bước.
+Ý nghĩa: nếu gỡ tường đó, Đích sẽ tới được chính ô tường với chi phí tối ưu đã tính.
 
-Tính ngay tổng điểm ban đầu D bằng cách cộng dist_dest tại tất cả vị trí quân cờ.
+Ý số bốn: Xử lý từng quân cờ độc lập
+Lặp N lần:
+• Chạy BFS xuất phát tại ô của quân cờ i, sinh mảng Khoảng-Cách-Từ-Quân-i.
+• Tương tự bước trên, tạo Tối-Ưu-Quân-i-Tường bằng cách quét các ô trống kề tường.
+• Với mỗi tường j:
+  Khoảng-Cách-Mới = Tối-Ưu-Quân-i-Tường j + Tối-Ưu-Đích-Tường j
+  Nếu Khoảng-Cách-Mới nhỏ hơn quãng đường gốc d_i, tăng Giá-Trị-Tường j lên d_i trừ Khoảng-Cách-Mới.
 
-Ý số hai – Khoảng cách riêng của từng quân
+Ý số năm: Kết quả cuối
+• Điểm-Số-Gốc D đã có sau Ý số hai.
+• Giá-Trị-Thuần bằng tổng tất cả phần tử của mảng Giá-Trị-Tường.
 
-Với mỗi quân cờ i (tối đa năm mươi quân), chạy BFS thứ hai bắt đầu từ ô của nó để nhận dist_pawn[i][r][c].
-Tổng số ô quét ≈ (N cộng một) nhân R nhân C ≈ hai triệu, hoàn toàn thoải mái với giới hạn.
+Ý số sáu: Độ phức tạp
+BFS trên lưới R nhân C tốn O (R × C). Thực hiện một lần cho Đích và N lần cho N quân cờ: tổng O (N × R × C).
+Bên trong mỗi BFS, cập-nhật dữ liệu tường bằng cách xét bốn ô lân cận, vẫn O (R × C).
+Bộ nhớ: một mảng nguyên cho lưới cộng thêm N mảng khoảng cách, cỡ vài triệu số nguyên, vừa vặn cho giới hạn đề.
 
-Ý số ba – Công thức cập-nhật khi phá một tường
-Gọi w là ô tường đang xét. Bốn ô kề của w ký hiệu n.
+Ý số bảy: Tên biến gợi ý
+Độ-Dài-Tới-Đích, Khoảng-Cách-Từ-Quân-i, Tối-Ưu-Đích-Tường, Tối-Ưu-Quân-i-Tường, Giá-Trị-Tường, Điểm-Số-Gốc, Giá-Trị-Thuần.
 
-Khoảng cách từ tường tới Đích sau khi đục
-cost_to_dest_w = 1 cộng min dist_dest[n] trên các n đi được.
-
-Khoảng cách quân i qua tường w
-best_to_wall_i = 1 cộng min dist_pawn[i][n] (nằm sát tường).
-Đường mới của quân i: new_i = best_to_wall_i cộng cost_to_dest_w.
-
-Giảm điểm của tường
-gain_i = max(0, dist_dest[pawn_i] trừ new_i).
-Giá trị tường w bằng tổng gain_i trên mọi quân.
-
-Lý do đúng: khi chỉ mở đúng một ô, mọi đường đi mới ngắn hơn (nếu có) bắt buộc ghé qua chính ô vừa mở; công thức trên xét hết mọi khả năng ghé vào rồi ra khỏi ô đó trong hai bước một cộng một.
-
-Ý số bốn – Độ phức tạp
-
-Tiền xử lý: O( (N cộng một) nhân R nhân C ).
-
-Đếm giá trị cho tất cả tường: O( số_tường nhân N ) ≤ bốn mươi nghìn nhân năm mươi ≈ hai triệu phép cộng so sánh.
-
-Bộ nhớ: một mảng khoảng bốn mươi nghìn phần tử cho dist_dest cộng năm mươi mảng như vậy cho quân, tổng dưới mười megabyte.
-
-Ý số năm – Quy trình xuất kết quả
-
-Sau vòng lặp qua mọi tường, cộng hết giá trị thu được thành Net Value.
-
-In hai số nguyên: D và Net Value cho mỗi bộ dữ liệu trong một dòng.
-
-Mẹo cài đặt: để không tốn thời gian kiểm tra ô không hợp lệ, hãy viết hàm for four directions trả về n hợp lệ và không phải tường.
+Chỉ cần bám đúng sáu ý chính trên, cài đặt sẽ vượt thời gian tối đa dễ dàng.
