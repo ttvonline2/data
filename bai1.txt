@@ -1,80 +1,52 @@
-function main
-    T ← readInt
-    loop caseId from 1 to T
-        R C N r c ← readInts
-        pawns ← empty list
-        loop i from 1 to N
-            x y ← readInts
-            append (x-1, y-1) to pawns
-        grid ← array of R strings
-        loop i from 0 to R-1
-            grid[i] ← readString
-        score net ← solveCase(R, C, N, (r-1, c-1), pawns, grid)
-        print score, net
+Mục tiêu
 
-function solveCase(R, C, N, dest, pawns, grid)
-    distDest ← bfsFrom(dest, grid, R, C)
-    oldDist ← array of N
-    loop i from 0 to N-1
-        oldDist[i] ← distDest[pawns[i]]
-    score ← sum of oldDist
-    walls ← listWalls(grid, R, C)
-    destPart ← prepDestPart(walls, distDest, grid, R, C)
-    pawnDist ← array of N
-    loop i from 0 to N-1
-        pawnDist[i] ← bfsFrom(pawns[i], grid, R, C)
-    net ← 0
-    loop wIndex from 0 to size(walls)-1
-        newScore ← 0
-        loop i from 0 to N-1
-            entry ← bestEntry(walls[wIndex], pawnDist[i], grid, R, C)
-            cand ← entry + destPart[wIndex]
-            best ← min(oldDist[i], cand)
-            newScore ← newScore + best
-        net ← net + score - newScore
-    return score, net
+Tính Điểm gốc: tổng quãng đường ngắn nhất mà mỗi quân phải đi từ vị trí ban đầu tới Ô Đích khi chưa bỏ tường.
 
-function bfsFrom(start, grid, R, C)
-    dist ← matrix R × C filled with INF
-    queue ← empty deque
-    dist[start] ← 0
-    pushBack queue start
-    while queue not empty
-        u ← popFront queue
-        for each dir in fourDirections
-            v ← u + dir
-            if inside(v, R, C) and grid[v] ≠ 'W' and dist[v] = INF
-                dist[v] ← dist[u] + 1
-                pushBack queue v
-    return dist
+Tính Giá trị ròng: với từng ô có tường, thử “đập” đúng ô đó, tính lại tổng quãng đường, lấy phần giảm xuống; cộng tất cả phần giảm của mọi tường.
 
-function listWalls(grid, R, C)
-    walls ← empty list
-    loop i from 0 to R-1
-        loop j from 0 to C-1
-            if grid[i][j] = 'W'
-                append (i, j) to walls
-    return walls
+Tính Điểm gốc
 
-function prepDestPart(walls, distDest, grid, R, C)
-    destPart ← array size(walls) filled with INF
-    loop idx from 0 to size(walls)-1
-        w ← walls[idx]
-        best ← INF
-        for each dir in fourDirections
-            n ← w + dir
-            if inside(n, R, C) and grid[n] ≠ 'W'
-                best ← min(best, distDest[n] + 1)
-        destPart[idx] ← best
-    return destPart
+Chạy tìm-đường rộng (Bê E F S) một lần duy nhất từ Ô Đích tới mọi ô trống.
 
-function bestEntry(wall, distMap, grid, R, C)
-    best ← INF
-    for each dir in fourDirections
-        n ← wall + dir
-        if inside(n, R, C) and grid[n] ≠ 'W'
-            best ← min(best, distMap[n] + 1)
-    return best
+Khoảng cách từ Đích tới ô của quân số i (gọi là “đê i”) có ngay trong bảng khoảng cách.
 
-function inside(cell, R, C)
-    return 0 ≤ cell.row < R and 0 ≤ cell.col < C
+Cộng tất cả “đê i” ta được Điểm gốc, ký hiệu “đê lớn”.
+
+Chuẩn bị để đánh giá mỗi ô tường
+
+Liệt kê mọi ô tường, đánh số từ 0 đến w trừ một.
+
+Với mỗi ô tường, xét bốn ô kề (trên, dưới, trái, phải) – chỉ cần ô nào trống.
+
+Phần đường từ ô tường tới Đích sau khi phá tường bằng: “một bước để ra khỏi tường” cộng “khoảng cách nhỏ nhất từ một ô kề tới Đích”. Lưu giá trị này thành destPart[wall].
+
+Khoảng cách từ mỗi quân tới mọi ô
+
+Số quân nhỏ (không quá năm mươi) – ta chạy Bê E F S riêng cho từng quân để có bảng khoảng cách distPawn[i]. Chi phí tối đa hai triệu ô, thoải mái.
+
+Giá trị của một ô tường
+
+Với một tường đã chọn:
+
+Với từng quân, tìm ô kề của tường gần quân nhất: lấy distPawn[i][neighbor] + một; chọn nhỏ nhất gọi enter.
+
+Đường qua tường dài enter + destPart[wall].
+
+Đường tốt nhất của quân khi tường bị phá là min(đê i cũ, enter + destPart[wall]).
+
+Cộng lại cho tất cả quân được NewScore của bàn sau khi phá tường.
+
+Giá trị của tường = đê lớn − NewScore (không âm).
+
+Giá trị ròng
+
+Lặp qua tất cả tường, cộng Giá trị của chúng.
+
+Độ phức tạp
+
+Một lần Bê E F S từ Đích + N lần từ quân: ô × (N+1) ≤ 2 × 10⁶.
+
+Vòng lặp tường × quân × tối đa 4 láng giềng: ≈ 8 × 10⁶ phép so sánh.
+
+Phù hợp với giới hạn.
+
