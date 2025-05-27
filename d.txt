@@ -1,8 +1,44 @@
-Giờ trời làm má em thêm hồng
-Một đời an yên anh thấy nhẹ lòng
-Trời ngăn tơ duyên chúng ta thành đôi
-Thiên lý ơi
-Em có thể ở lại đây không
-Biết chăng ngoài trời mưa giông
-Nhiều cô đơn lắm em
-Thiên lý ơi
+Ý số một – Tiền xử lý khoảng cách gốc
+
+Chạy duy nhất một lượt BFS ‒ bắt đầu từ ô Đích ‒ trên lưới gốc, coi ô tường là bị chặn.
+
+Mảng kết quả dist_dest[r][c] chứa độ dài đường ngắn nhất từ mỗi ô trống tới Đích.
+
+Tính ngay tổng điểm ban đầu D bằng cách cộng dist_dest tại tất cả vị trí quân cờ.
+
+Ý số hai – Khoảng cách riêng của từng quân
+
+Với mỗi quân cờ i (tối đa năm mươi quân), chạy BFS thứ hai bắt đầu từ ô của nó để nhận dist_pawn[i][r][c].
+Tổng số ô quét ≈ (N cộng một) nhân R nhân C ≈ hai triệu, hoàn toàn thoải mái với giới hạn.
+
+Ý số ba – Công thức cập-nhật khi phá một tường
+Gọi w là ô tường đang xét. Bốn ô kề của w ký hiệu n.
+
+Khoảng cách từ tường tới Đích sau khi đục
+cost_to_dest_w = 1 cộng min dist_dest[n] trên các n đi được.
+
+Khoảng cách quân i qua tường w
+best_to_wall_i = 1 cộng min dist_pawn[i][n] (nằm sát tường).
+Đường mới của quân i: new_i = best_to_wall_i cộng cost_to_dest_w.
+
+Giảm điểm của tường
+gain_i = max(0, dist_dest[pawn_i] trừ new_i).
+Giá trị tường w bằng tổng gain_i trên mọi quân.
+
+Lý do đúng: khi chỉ mở đúng một ô, mọi đường đi mới ngắn hơn (nếu có) bắt buộc ghé qua chính ô vừa mở; công thức trên xét hết mọi khả năng ghé vào rồi ra khỏi ô đó trong hai bước một cộng một.
+
+Ý số bốn – Độ phức tạp
+
+Tiền xử lý: O( (N cộng một) nhân R nhân C ).
+
+Đếm giá trị cho tất cả tường: O( số_tường nhân N ) ≤ bốn mươi nghìn nhân năm mươi ≈ hai triệu phép cộng so sánh.
+
+Bộ nhớ: một mảng khoảng bốn mươi nghìn phần tử cho dist_dest cộng năm mươi mảng như vậy cho quân, tổng dưới mười megabyte.
+
+Ý số năm – Quy trình xuất kết quả
+
+Sau vòng lặp qua mọi tường, cộng hết giá trị thu được thành Net Value.
+
+In hai số nguyên: D và Net Value cho mỗi bộ dữ liệu trong một dòng.
+
+Mẹo cài đặt: để không tốn thời gian kiểm tra ô không hợp lệ, hãy viết hàm for four directions trả về n hợp lệ và không phải tường.
