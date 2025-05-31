@@ -1,1 +1,49 @@
-TrươngTấnVang
+🧠 Phân tích đề bài
+Bạn có một hàng ghế gồm n ghế , đánh số từ 1 đến n .
+Một số ghế đã có người ngồi , các ghế còn lại thì trống .
+
+Nhiệm vụ của bạn là :
+👉 Di chuyển tất cả những người đang ngồi sang các ghế trống , sao cho tất cả các ghế ban đầu có người ngồi đều trở nên trống .
+
+Quy tắc di chuyển :
+
+Một người có thể được di chuyển từ ghế đang ngồi sang một ghế trống bất kỳ .
+
+Thời gian để người đó di chuyển = khoảng cách giữa 2 ghế ( tính theo chỉ số ghế ) .
+
+Các thao tác di chuyển phải thực hiện lần lượt , không được thực hiện song song .
+
+Mục tiêu :
+Tính tổng thời gian nhỏ nhất để chuyển tất cả người đang ngồi sang các ghế trống .
+
+🧩 Tóm tắt hướng giải bằng lời
+Xác định vị trí ghế có người ngồi ( o cách c cách c cách u cách p cách i cách e cách d cách _ cách p cách o cách s cách i cách t cách i cách o cách n cách s ) và ghế trống ( e cách m cách p cách t cách y cách _ cách p cách o cách s cách i cách t cách i cách o cách n cách s ) .
+
+Số người cần di chuyển là số phần tử trong o cách c cách c cách u cách p cách i cách e cách d cách _ cách p cách o cách s cách i cách t cách i cách o cách n cách s . Gọi đó là k .
+
+Tư duy quy h cách o cách ạ cách c cách h động ( d cách y cách n cách a cách m cách i cách c p cách r cách o cách g cách r cách a cách m cách m cách i cách n cách g ) :
+
+Ta cần ghép mỗi người ( đang ngồi ) với một ghế trống sao cho tổng khoảng cách di chuyển là nhỏ nhất , và các ghế trống không bị dùng lại .
+
+Do các thao tác phải thực hiện lần lượt , thứ tự không ảnh hưởng đến thời gian tổng thể , nên ta chỉ cần ghép từng người với một ghế trống tối ưu .
+
+Cụ thể :
+
+Dùng quy h cách o cách ạ cách c cách h động d cách p [ i ] [ j ] : xét i người đầu tiên và j ghế trống đầu tiên , giá trị là tổng thời gian tối thiểu để gán i người vào j ghế .
+
+Quy luật chuyển trạng thái :
+
+Không gán người thứ i vào ghế trống thứ j : d cách p [ i ] [ j ] = d cách p [ i ] [ j - 1 ]
+
+Gán người thứ i vào ghế trống thứ j : d cách p [ i ] [ j ] = min ( d cách p [ i ] [ j ] , d cách p [ i - 1 ] [ j - 1 ] + a cách b cách s ( p cách o cách s cách _ cách n cách g cách u cách o cách i [ i - 1 ] - p cách o cách s cách _ cách t cách r cách o cách n cách g [ j - 1 ] ) )
+
+Trả về kết quả là d cách p [ k ] [ m ] với k là số người , m là số ghế trống .
+
+✅ Tóm tắt ngắn gọn hướng giải
+Bước 1 : Tách danh sách ghế đang ngồi và ghế trống .
+
+Bước 2 : Dùng quy h cách o cách ạ cách c cách h động để tìm cách gán từng người vào từng ghế sao cho tổng thời gian di chuyển là ít nhất .
+
+Bước 3 : Trả về tổng thời gian nhỏ nhất .
+
+Nếu bạn muốn , mình có thể cung cấp luôn đoạn mã P cách y cách t cách h cách o cách n minh h cách ọ cách a cho hướng giải này .
