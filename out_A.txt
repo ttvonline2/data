@@ -1,5 +1,5 @@
 🧠 Phân tích đề bài
-Bạn có một hàng ghế gồm n ghế , đánh số từ 1 đến n .
+Bạn có một hàng ghế gồm n ghế , đánh số từ 1 đến 123 .
 Một số ghế đã có người ngồi , các ghế còn lại thì trống .
 
 Nhiệm vụ của bạn là :
@@ -17,11 +17,11 @@ Mục tiêu :
 Tính tổng thời gian nhỏ nhất để chuyển tất cả người đang ngồi sang các ghế trống .
 
 🧩 Tóm tắt hướng giải bằng lời
-Xác định vị trí ghế có người ngồi ( o c c u p i e d _ p o s i t i o n s ) và ghế trống ( e m p t y _ p o s i t i o n s ) .
+Xác định vị trí ghế có người ngồi ( <<< o c c u p i e d _ p o s i t i o n s >>> ) và ghế trống ( <<< e m p t y _ p o s i t i o n s >>> ) .
 
-Số người cần di chuyển là số phần tử trong o c c u p i e d _ p o s i t i o n s . Gọi đó là k .
+Số người cần di chuyển là số phần tử trong <<< o c c u p i e d _ p o s i t i o n s >>> . Gọi đó là k .
 
-Tư duy quy h o ạ c h động ( d y n a m i c p r o g r a m m i n g ) :
+Tư duy quy hoạch động ( <<< d y n a m i c >>> <<< p r o g r a m m i n g >>> ) :
 
 Ta cần ghép mỗi người ( đang ngồi ) với một ghế trống sao cho tổng khoảng cách di chuyển là nhỏ nhất , và các ghế trống không bị dùng lại .
 
@@ -29,21 +29,21 @@ Do các thao tác phải thực hiện lần lượt , thứ tự không ảnh h
 
 Cụ thể :
 
-Dùng quy h o ạ c h động d p [ i ] [ j ] : xét i người đầu tiên và j ghế trống đầu tiên , giá trị là tổng thời gian tối thiểu để gán i người vào j ghế .
+Dùng quy hoạch động <<< d p >>> [ i ] [ j ] : xét i người đầu tiên và j ghế trống đầu tiên , giá trị là tổng thời gian tối thiểu để gán i người vào j ghế .
 
 Quy luật chuyển trạng thái :
 
-Không gán người thứ i vào ghế trống thứ j : d p [ i ] [ j ] = d p [ i ] [ j - 1 ]
+Không gán người thứ i vào ghế trống thứ j : <<< d p >>> [ i ] [ j ] = <<< d p >>> [ i ] [ j - 1 ]
 
-Gán người thứ i vào ghế trống thứ j : d p [ i ] [ j ] = min ( d p [ i ] [ j ] , d p [ i - 1 ] [ j - 1 ] + a b s ( p o s _ n g u o i [ i - 1 ] - p o s _ t r o n g [ j - 1 ] ) )
+Gán người thứ i vào ghế trống thứ j : <<< d p >>> [ i ] [ j ] = min ( <<< d p >>> [ i ] [ j ] , <<< d p >>> [ i - 1 ] [ j - 1 ] + <<< a b s >>> ( <<< p o s _ n g u o i >>> [ i - 1 ] - <<< p o s _ t r o n g >>> [ j - 1 ] ) )
 
-Trả về kết quả là d p [ k ] [ m ] với k là số người , m là số ghế trống .
+Trả về kết quả là <<< d p >>> [ k ] [ m ] với k là số người , m là số ghế trống .
 
 ✅ Tóm tắt ngắn gọn hướng giải
 Bước 1 : Tách danh sách ghế đang ngồi và ghế trống .
 
-Bước 2 : Dùng quy h o ạ c h động để tìm cách gán từng người vào từng ghế sao cho tổng thời gian di chuyển là ít nhất .
+Bước 2 : Dùng quy hoạch động để tìm cách gán từng người vào từng ghế sao cho tổng thời gian di chuyển là ít nhất .
 
 Bước 3 : Trả về tổng thời gian nhỏ nhất .
 
-Nếu bạn muốn , mình có thể cung cấp luôn đoạn mã P y t h o n minh h ọ a cho hướng giải này .
+Nếu bạn muốn , mình có thể cung cấp luôn đoạn mã <<< P y t h o n >>> minh họa cho hướng giải này .
