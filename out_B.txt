@@ -1,2 +1,21 @@
-Đây là chuỗi viết liền ký tự thường : <<< a b c d e f g h i j k l m n o p q r s t u v w x y z >>>
-Đây là chữ hoa : <<< A B C D E F G H I J K L M N O P Q R S T U V W X Y Z >>>
+Xác định vị trí ghế có người ngồi ( <<< o c c u p i e d _ p o s i t i o n s >>> ) và ghế trống ( <<< e m p t y _ p o s i t i o n s >>> ) .
+
+Số người cần di chuyển là số phần tử trong <<< o c c u p i e d _ p o s i t i o n s >>> . Gọi đó là k .
+
+Tư duy quy hoạch động ( <<< d y n a m i c >>> <<< p r o g r a m m i n g >>> ) :
+
+Ta cần ghép mỗi người ( đang ngồi ) với một ghế trống sao cho tổng khoảng cách di chuyển là nhỏ nhất , và các ghế trống không bị dùng lại .
+
+Do các thao tác phải thực hiện lần lượt , thứ tự không ảnh hưởng đến thời gian tổng thể , nên ta chỉ cần ghép từng người với một ghế trống tối ưu .
+
+Cụ thể :
+
+Dùng quy hoạch động <<< d p >>> [ i ] [ j ] : xét i người đầu tiên và j ghế trống đầu tiên , giá trị là tổng thời gian tối thiểu để gán i người vào j ghế .
+
+Quy luật chuyển trạng thái :
+
+Không gán người thứ i vào ghế trống thứ j : <<< d p >>> [ i ] [ j ] = <<< d p >>> [ i ] [ j - 1 ]
+
+Gán người thứ i vào ghế trống thứ j : <<< d p >>> [ i ] [ j ] = min ( <<< d p >>> [ i ] [ j ] , <<< d p >>> [ i - 1 ] [ j - 1 ] + <<< a b s >>> ( <<< p o s _ n g u o i >>> [ i - 1 ] - <<< p o s _ t r o n g >>> [ j - 1 ] ) )
+
+Trả về kết quả là <<< d p >>> [ k ] [ m ] với k là số người , m là số ghế trống .
