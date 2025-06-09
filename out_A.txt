@@ -1,1 +1,59 @@
-Trương tấn vang
+Ý tưởng tổng quát
+
+Duỗi chuỗi để xử lý vòng tròn
+
+Gắn thêm bản sao của chuỗi kết quả W vào cuối chính nó , tạo thành chuỗi W ' dài hai lần N .
+
+Nhờ đó , bất kỳ đoạn liên tiếp dài tối đa N ký tự , bắt đầu ở vị trí nào trên vòng tròn , giờ đều nằm gọn trong một “ đoạn thẳng ” của W ' .
+
+Tạo hai mảng cộng dồn
+
+<<< p r e f A >>> [ i ] = số lần <<< A l i c e >>> thắng trong W ' từ đầu đến vị trí i .
+
+<<< p r e f B >>> [ i ] = số lần <<< B e r t >>> thắng trong W ' từ đầu đến vị trí i .
+
+Kích thước chỉ khoảng hai lần N ( ≤ 500 000 ) , hoàn toàn đủ bộ nhớ .
+
+Xử lý từng <<< B o S >>> ( s , g )
+
+Gọi l = s và r = s + g – 1 trên chuỗi W ' .
+
+Số ván cần để vô địch : t = ( g + 1 ) chia 2 ( đọc là “ một nửa làm tròn lên ” ) .
+
+Bước tìm vị trí <<< A l i c e >>> có đủ t chiến thắng
+
+Kiểm tra nhanh : tổng số ván <<< A l i c e >>> thắng trong đoạn l … r = <<< p r e f A >>> [ r ] – <<< p r e f A >>> [ l - 1 ] .
+
+Nếu lượng này nhỏ hơn t ⇒ <<< A l i c e >>> chắc chắn không thể thắng trước , gán “ vị trí thắng ” của <<< A l i c e >>> là vô cực .
+
+Ngược lại , dùng tìm kiếm nhị phân trên đoạn l … r đối với <<< p r e f A >>> để lấy chỉ số nhỏ nhất <<< p o s A >>> thỏa <<< p r e f A >>> [ <<< p o s A >>> ] – <<< p r e f A >>> [ l - 1 ] ≥ t .
+
+Làm tương tự cho <<< B e r t >>> ( dùng <<< p r e f B >>> ) . Nhận chỉ số <<< p o s B >>> ( hoặc vô cực ) .
+
+Số ván thực sự được chơi :
+<<< A _ j >>> = min ( <<< p o s A >>> , <<< p o s B >>> ) – l + 1 .
+Đây là độ dài ngắn nhất cho tới khi một trong hai bên chạm mốc t thắng .
+
+Cộng dồn kết quả
+
+Cộng tất cả <<< A _ j >>> của M loạt để in ra đáp án .
+
+Độ phức tạp
+
+Tiền xử lý : O ( N ) cho hai mảng cộng dồn .
+
+Mỗi truy vấn : hai phép kiểm tra cộng dồn O ( 1 ) + hai tìm kiếm nhị phân O ( log N ) .
+
+Tổng : O ( ( N + M ) × log N ) cho một bộ test , thỏa mái với N , M ≤ 250 000 .
+
+Bộ nhớ : O ( N ) .
+
+Chi tiết cần lưu ý
+
+Mọi chỉ số tính theo một chuỗi đô ̃ i da ̀ i hai lần N , không cần phép chia dư .
+
+Dùng “ vô cực ” dưới dạng một giá trị lớn hơn r để so sánh dễ dàng .
+
+Tìm kiếm nhị phân : có thể cài bằng hàm “ <<< l o w e r _ b o u n d >>> ” trên mảng cộng dồn .
+
+Đảm bảo dùng kiểu số 64 <<< b i t >>> khi cộng tổng <<< A _ j >>> vì có thể vượt 32 <<< b i t >>> .
