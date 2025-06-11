@@ -1,1 +1,56 @@
-BàiD
+# <<< i n c l u d e >>> < <<< b i t s >>> / <<< s t d c >>> + + . h >
+<<< u s i n g >>> <<< n a m e s p a c e >>> <<< s t d >>> ;
+
+<<< s t r u c t >>> <<< S t a t e >>> {
+<<< i n t >>> <<< b e s t >>> ; / / điểm cao nhất đạt được
+long long <<< w a y s >>> ; / / số hoán vị đạt điểm đó
+} ;
+
+<<< i n t >>> <<< m a i n >>> ( ) {
+<<< i o s >>> : : <<< s y n c _ w i t h _ s t d i o >>> ( <<< f a l s e >>> ) ;
+<<< c i n >>> . <<< t i e >>> ( <<< n u l l p t r >>> ) ;
+
+<<< i n t >>> T ;
+<<< i f >>> ( ! ( <<< c i n >>> > > T ) ) <<< r e t u r n >>> 0 ;
+<<< w h i l e >>> ( T - - ) {
+<<< i n t >>> N , M ;
+<<< c i n >>> > > N > > M ;
+
+/ * ma trận w [ i ] [ j ] = tổng điểm nếu i nằm bên trái j * /
+<<< i n t >>> w [ 9 ] [ 9 ] = { } ;
+<<< f o r >>> ( <<< i n t >>> m = 0 ; m < M ; + + m ) {
+<<< i n t >>> V , A , B ;
+<<< c i n >>> > > V > > A > > B ;
+- - A ; - - B ; / / chuyển về chỉ số 0 - <<< b a s e d >>>
+w [ A ] [ B ] + = V ;
+}
+
+<<< i n t >>> <<< f u l l >>> = ( 1 < < N ) - 1 ;
+vector < <<< S t a t e >>> > <<< d p >>> ( 1 < < N , { <<< I N T _ M I N >>> , 0 } ) ;
+<<< d p >>> [ 0 ] = { 0 , 1 } ; / / trạng thái rỗng
+
+<<< f o r >>> ( <<< i n t >>> <<< m a s k >>> = 0 ; <<< m a s k >>> < = <<< f u l l >>> ; + + <<< m a s k >>> ) {
+<<< i f >>> ( <<< d p >>> [ <<< m a s k >>> ] . <<< b e s t >>> = = <<< I N T _ M I N >>> ) <<< c o n t i n u e >>> ; / / chưa được truy cập
+<<< f o r >>> ( <<< i n t >>> k = 0 ; k < N ; + + k ) {
+<<< i f >>> ( <<< m a s k >>> & ( 1 < < k ) ) <<< c o n t i n u e >>> ; / / k đã có trong <<< m a s k >>>
+<<< i n t >>> <<< a d d >>> = 0 ;
+<<< f o r >>> ( <<< i n t >>> i = 0 ; i < N ; + + i )
+<<< i f >>> ( <<< m a s k >>> & ( 1 < < i ) )
+<<< a d d >>> + = w [ i ] [ k ] ; / / i đang ở trái , k thêm vào cuối
+
+<<< i n t >>> <<< n e w M a s k >>> = <<< m a s k >>> | ( 1 < < k ) ;
+<<< i n t >>> <<< n e w S c o r e >>> = <<< d p >>> [ <<< m a s k >>> ] . <<< b e s t >>> + <<< a d d >>> ;
+
+<<< i f >>> ( <<< n e w S c o r e >>> > <<< d p >>> [ <<< n e w M a s k >>> ] . <<< b e s t >>> ) {
+<<< d p >>> [ <<< n e w M a s k >>> ] . <<< b e s t >>> = <<< n e w S c o r e >>> ;
+<<< d p >>> [ <<< n e w M a s k >>> ] . <<< w a y s >>> = <<< d p >>> [ <<< m a s k >>> ] . <<< w a y s >>> ;
+} <<< e l s e >>> <<< i f >>> ( <<< n e w S c o r e >>> = = <<< d p >>> [ <<< n e w M a s k >>> ] . <<< b e s t >>> ) {
+<<< d p >>> [ <<< n e w M a s k >>> ] . <<< w a y s >>> + = <<< d p >>> [ <<< m a s k >>> ] . <<< w a y s >>> ;
+}
+}
+}
+
+<<< c o u t >>> < < <<< d p >>> [ <<< f u l l >>> ] . <<< b e s t >>> < < ' ' < < <<< d p >>> [ <<< f u l l >>> ] . <<< w a y s >>> < < ' \ n ' ;
+}
+<<< r e t u r n >>> 0 ;
+}
