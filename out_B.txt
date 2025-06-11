@@ -1,1 +1,63 @@
-Cái méo gì thế ?
+Ý tưởng tổng quát
+
+Đếm sẵn
+
+Trước hết , kiểm tra có bao nhiêu gậy vốn đã dài 1 . Gọi con số này là sẵn .
+
+Nếu sẵn đã ≥ K thì khách đủ hàng , chi phí bằng 0 và kết thúc .
+
+Khảo sát phần còn thiếu
+
+Cần thêm thiếu = K − sẵn gậy dài 1 ( nếu thiếu ≤ 0 thì bỏ qua bước này ) .
+
+Với mỗi gậy còn lại có chiều dài L ≥ 2 , ta biết :
+
+Khi không cắt : góp 0 gậy dài 1 , chi phí 0 .
+
+Khi cắt : góp L gậy dài 1 , chi phí bằng a nhân ( L trừ 1 ) bình phương cộng b .
+
+Chuyển thành “ ba - lô 0 - 1 ”
+
+Mỗi gậy là một “ món đồ ” :
+
+“ Giá trị ” ( tạm gọi là số gậy 1 mang lại ) = L .
+
+“ Giá ” ( chi phí ) = công thức chi phí kể trên .
+
+Cần chọn tập con sao cho tổng “ giá trị ” ≥ thiếu và tổng “ giá ” nhỏ nhất .
+
+Lập bảng động ( <<< D P >>> )
+
+Tạo mảng <<< d p >>> [ x ] ( 0 ≤ x ≤ thiếu ) lưu chi phí tối thiểu để có đúng x gậy dài 1 . Khởi tạo : <<< d p >>> [ 0 ] = 0 , các ô khác gán vô cùng .
+
+Duyệt từng gậy :
+
+Sao chép mảng hiện tại sang mảng mới để tránh trùng cập nhật .
+
+Với mỗi x hiện có , tính y = min ( thiếu , x + L ) ( cộng thêm gậy mới nhưng không cần vượt quá thiếu ) .
+
+Cập nhật : chi phí tại y = min ( chi phí cũ , chi phí ở x cộng chi phí cắt gậy ) .
+
+Sau khi xử lý hết gậy , kết quả nằm ở <<< d p >>> [ thiếu ] .
+
+Độ phức tạp
+
+Số gậy ≤ 100 , thiếu tối đa 10 000 → khoảng một triệu phép gán , thoải mái cho yêu cầu .
+
+Góc kiểm thử
+
+Trường hợp không cần cắt : thiếu = 0 → trả về 0 ngay .
+
+Trường hợp phải cắt ít gậy lớn : thuật toán tự thấy cắt gậy lớn đôi khi rẻ hơn cắt nhiều gậy nhỏ , vì chi phí a nhân bình phương ( L − 1 ) có thể tăng chậm so với lợi ích .
+
+So khớp mẫu : Áp dụng quy trình trên cho hai ví dụ trong đề , kết quả lần lượt là 18 và 25 như bảng đáp án .
+
+Tóm tắt
+
+Đếm sẵn gậy dài 1 để biết còn thiếu bao nhiêu .
+
+Mỗi gậy dài ≥ 2 cho ta cặp ( số gậy 1 mang lại , chi phí ) .
+
+Dùng <<< D P >>> kiểu ba - lô 0 - 1 tối thiểu hoá chi phí đạt tổng giá trị ≥ thiếu .
+
+Độ phức tạp nhỏ , dễ cài .
