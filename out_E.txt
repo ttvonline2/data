@@ -1,9 +1,28 @@
 # <<< i n c l u d e >>> cách < <<< b i t s >>> / <<< s t d c >>> + + . h >
 <<< u s i n g >>> cách <<< n a m e s p a c e >>> cách <<< s t d >>> ;
 
-<<< s t r u c t >>> cách <<< S t a t e >>> cách {
-4 cách <<< i n t >>> cách <<< b e s t >>> ; 10 cách / / cách điểm cách cao cách nhất cách đạt cách được
-4 cách long cách long cách <<< w a y s >>> ; 4 cách / / cách số cách hoán cách vị cách đạt cách điểm cách đó
+<<< s t r u c t >>> cách <<< F e n w i c k >>> cách {
+4 cách vector < long cách long > cách <<< b i t >>> ;
+4 cách <<< i n t >>> cách n ;
+4 cách <<< F e n w i c k >>> ( <<< i n t >>> cách <<< _ n >>> cách = cách 0 ) cách { cách <<< i n i t >>> ( <<< _ n >>> ) ; cách }
+4 cách <<< v o i d >>> cách <<< i n i t >>> ( <<< i n t >>> cách <<< _ n >>> ) cách {
+8 cách n cách = cách <<< _ n >>> ;
+8 cách <<< b i t >>> . <<< a s s i g n >>> ( n cách + cách 1 , cách 0 ) ;
+4 cách }
+4 cách <<< v o i d >>> cách <<< a d d >>> ( <<< i n t >>> cách <<< i d x >>> , cách long cách long cách <<< v a l >>> ) cách {
+8 cách <<< f o r >>> cách ( <<< i n t >>> cách i cách = cách <<< i d x >>> ; cách i cách < = cách n ; cách i cách + = cách i cách & cách - i )
+12 cách <<< b i t >>> [ i ] cách + = cách <<< v a l >>> ;
+4 cách }
+4 cách long cách long cách sum ( <<< i n t >>> cách <<< i d x >>> ) cách <<< c o n s t >>> cách {
+8 cách long cách long cách <<< r e s >>> cách = cách 0 ;
+8 cách <<< f o r >>> cách ( <<< i n t >>> cách i cách = cách <<< i d x >>> ; cách i cách > cách 0 ; cách i cách - = cách i cách & cách - i )
+12 cách <<< r e s >>> cách + = cách <<< b i t >>> [ i ] ;
+8 cách <<< r e t u r n >>> cách <<< r e s >>> ;
+4 cách }
+4 cách long cách long cách <<< q u e r y >>> ( <<< i n t >>> cách l , cách <<< i n t >>> cách r ) cách <<< c o n s t >>> cách { 13 cách / / cách tổng cách trên cách [ l , cách r ]
+8 cách <<< i f >>> cách ( l cách > cách r ) cách <<< r e t u r n >>> cách 0 ;
+8 cách <<< r e t u r n >>> cách sum ( r ) cách - cách sum ( l cách - cách 1 ) ;
+4 cách }
 } ;
 
 <<< i n t >>> cách <<< m a i n >>> ( ) cách {
@@ -13,44 +32,59 @@
 4 cách <<< i n t >>> cách T ;
 4 cách <<< i f >>> cách ( ! ( <<< c i n >>> cách > > cách T ) ) cách <<< r e t u r n >>> cách 0 ;
 4 cách <<< w h i l e >>> cách ( T - - ) cách {
-8 cách <<< i n t >>> cách N , cách M ;
-8 cách <<< c i n >>> cách > > cách N cách > > cách M ;
+8 cách <<< i n t >>> cách N ;
+8 cách <<< c i n >>> cách > > cách N ;
+8 cách vector < <<< i n t >>> > cách B ( N cách + cách 1 ) ;
+8 cách <<< f o r >>> cách ( <<< i n t >>> cách i cách = cách 1 ; cách i cách < = cách N ; cách + + i ) cách <<< c i n >>> cách > > cách B [ i ] ;
 
-8 cách / * cách ma cách trận cách w [ i ] [ j ] cách = cách tổng cách điểm cách nếu cách i cách nằm cách bên cách trái cách j cách * /
-8 cách <<< i n t >>> cách w [ 9 ] [ 9 ] cách = cách { } ;
-8 cách <<< f o r >>> cách ( <<< i n t >>> cách m cách = cách 0 ; cách m cách < cách M ; cách + + m ) cách {
-12 cách <<< i n t >>> cách V , cách A , cách B ;
-12 cách <<< c i n >>> cách > > cách V cách > > cách A cách > > cách B ;
-12 cách - - A ; cách - - B ; 16 cách / / cách chuyển cách về cách chỉ cách số cách 0 - <<< b a s e d >>>
-12 cách w [ A ] [ B ] cách + = cách V ;
+8 cách <<< i f >>> cách ( N cách < cách 3 ) cách { 10 cách / / cách đoạn cách quá cách ngắn , cách kết cách quả cách chắc cách chắn cách 0
+12 cách <<< c o u t >>> cách < < cách 0 cách < < cách ' \ n ' ;
+12 cách <<< c o n t i n u e >>> ;
 8 cách }
 
-8 cách <<< i n t >>> cách <<< f u l l >>> cách = cách ( 1 cách < < cách N ) cách - cách 1 ;
-8 cách vector < <<< S t a t e >>> > cách <<< d p >>> ( 1 cách < < cách N , cách { <<< I N T _ M I N >>> , cách 0 } ) ;
-8 cách <<< d p >>> [ 0 ] cách = cách { 0 , cách 1 } ; 13 cách / / cách trạng cách thái cách rỗng
-
-8 cách <<< f o r >>> cách ( <<< i n t >>> cách <<< m a s k >>> cách = cách 0 ; cách <<< m a s k >>> cách < = cách <<< f u l l >>> ; cách + + <<< m a s k >>> ) cách {
-12 cách <<< i f >>> cách ( <<< d p >>> [ <<< m a s k >>> ] . <<< b e s t >>> cách = = cách <<< I N T _ M I N >>> ) cách <<< c o n t i n u e >>> ; 2 cách / / cách chưa cách được cách truy cách cập
-12 cách <<< f o r >>> cách ( <<< i n t >>> cách k cách = cách 0 ; cách k cách < cách N ; cách + + k ) cách {
-16 cách <<< i f >>> cách ( <<< m a s k >>> cách & cách ( 1 cách < < cách k ) ) cách <<< c o n t i n u e >>> ; 7 cách / / cách k cách đã cách có cách trong cách <<< m a s k >>>
-16 cách <<< i n t >>> cách <<< a d d >>> cách = cách 0 ;
-16 cách <<< f o r >>> cách ( <<< i n t >>> cách i cách = cách 0 ; cách i cách < cách N ; cách + + i )
-20 cách <<< i f >>> cách ( <<< m a s k >>> cách & cách ( 1 cách < < cách i ) )
-24 cách <<< a d d >>> cách + = cách w [ i ] [ k ] ; 14 cách / / cách i cách đang cách ở cách trái , cách k cách thêm cách vào cách cuối
-
-16 cách <<< i n t >>> cách <<< n e w M a s k >>> cách = cách <<< m a s k >>> cách | cách ( 1 cách < < cách k ) ;
-16 cách <<< i n t >>> cách <<< n e w S c o r e >>> cách = cách <<< d p >>> [ <<< m a s k >>> ] . <<< b e s t >>> cách + cách <<< a d d >>> ;
-
-16 cách <<< i f >>> cách ( <<< n e w S c o r e >>> cách > cách <<< d p >>> [ <<< n e w M a s k >>> ] . <<< b e s t >>> ) cách {
-20 cách <<< d p >>> [ <<< n e w M a s k >>> ] . <<< b e s t >>> cách = cách <<< n e w S c o r e >>> ;
-20 cách <<< d p >>> [ <<< n e w M a s k >>> ] . <<< w a y s >>> cách = cách <<< d p >>> [ <<< m a s k >>> ] . <<< w a y s >>> ;
-16 cách } cách <<< e l s e >>> cách <<< i f >>> cách ( <<< n e w S c o r e >>> cách = = cách <<< d p >>> [ <<< n e w M a s k >>> ] . <<< b e s t >>> ) cách {
-20 cách <<< d p >>> [ <<< n e w M a s k >>> ] . <<< w a y s >>> cách + = cách <<< d p >>> [ <<< m a s k >>> ] . <<< w a y s >>> ;
-16 cách }
+8 cách / / cách R [ i ] cách = cách chỉ cách số cách lớn cách hơn cách B [ i ] cách gần cách nhất cách về cách bên cách phải , cách nếu cách không cách có cách thì cách N + 1
+8 cách vector < <<< i n t >>> > cách R ( N cách + cách 1 , cách N cách + cách 1 ) ;
+8 cách {
+12 cách vector < <<< i n t >>> > cách <<< s t >>> ;
+12 cách <<< f o r >>> cách ( <<< i n t >>> cách i cách = cách N ; cách i cách > = cách 1 ; cách - - i ) cách {
+16 cách <<< w h i l e >>> cách ( ! <<< s t >>> . <<< e m p t y >>> ( ) cách & & cách B [ <<< s t >>> . <<< b a c k >>> ( ) ] cách < = cách B [ i ] ) cách <<< s t >>> . <<< p o p _ b a c k >>> ( ) ;
+16 cách <<< i f >>> cách ( ! <<< s t >>> . <<< e m p t y >>> ( ) ) cách R [ i ] cách = cách <<< s t >>> . <<< b a c k >>> ( ) ;
+16 cách <<< s t >>> . <<< p u s h _ b a c k >>> ( i ) ;
 12 cách }
 8 cách }
 
-8 cách <<< c o u t >>> cách < < cách <<< d p >>> [ <<< f u l l >>> ] . <<< b e s t >>> cách < < cách ' cách ' cách < < cách <<< d p >>> [ <<< f u l l >>> ] . <<< w a y s >>> cách < < cách ' \ n ' ;
+8 cách / / cách sắp cách chỉ cách số cách theo cách giá cách trị cách giảm cách dần
+8 cách vector < <<< i n t >>> > cách <<< i d x >>> ( N ) ;
+8 cách iota ( <<< i d x >>> . <<< b e g i n >>> ( ) , cách <<< i d x >>> . <<< e n d >>> ( ) , cách 1 ) ;
+8 cách <<< s o r t >>> ( <<< i d x >>> . <<< b e g i n >>> ( ) , cách <<< i d x >>> . <<< e n d >>> ( ) , cách [ & ] ( <<< i n t >>> cách a , cách <<< i n t >>> cách b ) cách {
+12 cách <<< i f >>> cách ( B [ a ] cách ! = cách B [ b ] ) cách <<< r e t u r n >>> cách B [ a ] cách > cách B [ b ] ;
+12 cách <<< r e t u r n >>> cách a cách < cách b ;
+8 cách } ) ;
+
+8 cách <<< F e n w i c k >>> cách <<< b i t C n t >>> ( N ) , cách <<< b i t S u m >>> ( N ) ; 3 cách / / cách lưu cách số cách lượng cách và cách tổng cách chỉ cách số cách các cách vị cách trí cách đã cách chèn
+8 cách long cách long cách <<< t o t a l >>> cách = cách 0 ;
+
+8 cách <<< f o r >>> cách ( <<< s i z e _ t >>> cách p cách = cách 0 ; cách p cách < cách <<< i d x >>> . <<< s i z e >>> ( ) ; cách + + p ) cách {
+12 cách <<< i n t >>> cách i cách = cách <<< i d x >>> [ p ] ;
+
+12 cách <<< i n t >>> cách l cách = cách i cách + cách 2 ; 10 cách / / cách j cách phải cách cách cách i cách ít cách nhất cách 2 cách để cách độ cách dài cách ≥ cách 3
+12 cách <<< i n t >>> cách r cách = cách R [ i ] cách - cách 1 ; 7 cách / / cách không cách vượt cách quá cách biên cách an cách toàn
+
+12 cách <<< i f >>> cách ( l cách < = cách r ) cách {
+16 cách long cách long cách <<< c n t >>> cách = cách <<< b i t C n t >>> . <<< q u e r y >>> ( l , cách r ) ;
+16 cách long cách long cách <<< s u m I d x >>> cách = cách <<< b i t S u m >>> . <<< q u e r y >>> ( l , cách r ) ;
+16 cách <<< i f >>> cách ( <<< c n t >>> ) cách {
+20 cách / / cách cộng cách ∑ cách ( j cách - cách i cách + cách 1 ) 2 cách với cách j cách trong cách [ l , cách r ] cách đã cách chèn
+20 cách long cách long cách <<< c o n t r i b >>> cách = cách <<< s u m I d x >>> cách - cách <<< c n t >>> cách * cách i cách + cách <<< c n t >>> ;
+20 cách <<< t o t a l >>> cách + = cách <<< c o n t r i b >>> ;
+16 cách }
+12 cách }
+12 cách / / cách chèn cách i cách vào cách hai cách cây cách <<< B I T >>>
+12 cách <<< b i t C n t >>> . <<< a d d >>> ( i , cách 1 ) ;
+12 cách <<< b i t S u m >>> . <<< a d d >>> ( i , cách i ) ;
+8 cách }
+
+8 cách <<< c o u t >>> cách < < cách <<< t o t a l >>> cách < < cách ' \ n ' ;
 4 cách }
 4 cách <<< r e t u r n >>> cách 0 ;
 }

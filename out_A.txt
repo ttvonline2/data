@@ -1,59 +1,233 @@
-Ý tưởng tổng quát
+Ý tưởng tổng quan
 
-Duỗi chuỗi để xử lý vòng tròn
+Khi nào một đoạn được cộng điểm ?
+– Độ dài phải ≥ 3 .
+– Giá trị lớn nhất ở giữa không được vượt quá giá trị nhỏ hơn trong hai đầu đoạn .
+→ Hình dung đầu “ thấp ” ( giá trị nhỏ hơn ) như một cái nắp , mọi phần tử nằm giữa hai đầu phải chui lọt dưới cái nắp đó .
 
-Gắn thêm bản sao của chuỗi kết quả W vào cuối chính nó , tạo thành chuỗi W ' dài hai lần N .
+Cố định đầu “ thấp ”
+Gọi chỉ số đầu thấp là i ( giả sử
+<<< 𝐵 >>>
+<<< 𝑖 >>>
+≤
+<<< 𝐵 >>>
+<<< 𝑗 >>>
+B
+i
+​
+≤ B
+j
+​
+) .
+Điều kiện trở thành :
+– Chọn một vị trí j > i + 1 .
+–
+<<< 𝐵 >>>
+<<< 𝑗 >>>
+≥
+<<< 𝐵 >>>
+<<< 𝑖 >>>
+B
+j
+​
+≥ B
+i
+​
+( đầu còn lại không thấp hơn nắp ) .
+– Tất cả phần tử giữa i và j đều ≤
+<<< 𝐵 >>>
+<<< 𝑖 >>>
+B
+i
+​
+.
 
-Nhờ đó , bất kỳ đoạn liên tiếp dài tối đa N ký tự , bắt đầu ở vị trí nào trên vòng tròn , giờ đều nằm gọn trong một “ đoạn thẳng ” của W ' .
+Khoanh đoạn an toàn quanh mỗi vị trí
+Với mỗi vị trí i , tìm biên trái L [ i ] và biên phải R [ i ] gần nhất có giá trị >
+<<< 𝐵 >>>
+<<< 𝑖 >>>
+B
+i
+​
+.
+Trong đoạn liên tiếp
+[
 
-Tạo hai mảng cộng dồn
+<<< 𝐿 >>>
+[
+<<< 𝑖 >>>
+]
++
+1
+,
 
-<<< p r e f A >>> [ i ] = số lần <<< A l i c e >>> thắng trong W ' từ đầu đến vị trí i .
+<<< 𝑅 >>>
+[
+<<< 𝑖 >>>
+]
+−
+1
+]
+[ L [ i ] + 1 , R [ i ] − 1 ] mọi phần tử ≤
+<<< 𝐵 >>>
+<<< 𝑖 >>>
+B
+i
+​
+.
+→ Nếu j nằm trong
+[
+<<< 𝑖 >>>
++
+2
+,
 
-<<< p r e f B >>> [ i ] = số lần <<< B e r t >>> thắng trong W ' từ đầu đến vị trí i .
+<<< 𝑅 >>>
+[
+<<< 𝑖 >>>
+]
+−
+1
+]
+[ i + 2 , R [ i ] − 1 ] thì điều kiện “ lọt nắp ” tự đảm bảo .
 
-Kích thước chỉ khoảng hai lần N ( ≤ 500 000 ) , hoàn toàn đủ bộ nhớ .
+L [ i ] , R [ i ] tính nhanh bằng <<< s t a c k >>> đơn điệu ( duyệt một lần từ trái qua phải cho R , từ phải sang trái cho L ) .
 
-Xử lý từng <<< B o S >>> ( s , g )
+Đếm nhanh các j phù hợp
+Duyệt các vị trí theo giá trị giảm dần .
+– Những chỉ số đã duyệt luôn có
+<<< 𝐵 >>>
+<<< 𝑘 >>>
+≥
+<<< 𝐵 >>>
+<<< 𝑖 >>>
+B
+k
+​
+≥ B
+i
+​
+.
+– Lưu các chỉ số đã duyệt vào một cấu trúc <<< F e n w i c k >>> / <<< S e g m e n t >>> <<< t r e e >>> với :
+<<< B I T >>> ₁ : số lượng chỉ số xếp ( để biết có bao nhiêu j ) .
+<<< B I T >>> ₂ : tổng vị trí xếp ( để tính nhanh tổng độ dài ) .
 
-Gọi l = s và r = s + g – 1 trên chuỗi W ' .
+Khi đang ở i :
 
-Số ván cần để vô địch : t = ( g + 1 ) chia 2 ( đọc là “ một nửa làm tròn lên ” ) .
+Cần thống kê trong đoạn
+[
+<<< 𝑖 >>>
++
+2
+,
 
-Bước tìm vị trí <<< A l i c e >>> có đủ t chiến thắng
+<<< 𝑅 >>>
+[
+<<< 𝑖 >>>
+]
+−
+1
+]
+[ i + 2 , R [ i ] − 1 ] .
 
-Kiểm tra nhanh : tổng số ván <<< A l i c e >>> thắng trong đoạn l … r = <<< p r e f A >>> [ r ] – <<< p r e f A >>> [ l - 1 ] .
+Lấy <<< c n t >>> = số vị trí j trong đoạn , <<< s u m I d x >>> = tổng các vị trí đó .
 
-Nếu lượng này nhỏ hơn t ⇒ <<< A l i c e >>> chắc chắn không thể thắng trước , gán “ vị trí thắng ” của <<< A l i c e >>> là vô cực .
+Tổng điểm do i đóng góp là
 
-Ngược lại , dùng tìm kiếm nhị phân trên đoạn l … r đối với <<< p r e f A >>> để lấy chỉ số nhỏ nhất <<< p o s A >>> thỏa <<< p r e f A >>> [ <<< p o s A >>> ] – <<< p r e f A >>> [ l - 1 ] ≥ t .
-
-Làm tương tự cho <<< B e r t >>> ( dùng <<< p r e f B >>> ) . Nhận chỉ số <<< p o s B >>> ( hoặc vô cực ) .
-
-Số ván thực sự được chơi :
-<<< A _ j >>> = min ( <<< p o s A >>> , <<< p o s B >>> ) – l + 1 .
-Đây là độ dài ngắn nhất cho tới khi một trong hai bên chạm mốc t thắng .
-
-Cộng dồn kết quả
-
-Cộng tất cả <<< A _ j >>> của M loạt để in ra đáp án .
+∑
+<<< 𝑗 >>>
+(
+<<< 𝑗 >>>
+−
+<<< 𝑖 >>>
++
+1
+)
+=
+<<< s u m I d x >>>
+−
+<<< c n t >>>
+⋅
+<<< 𝑖 >>>
++
+<<< c n t >>>
+.
+j
+∑
+​
+( j − i + 1 ) = <<< s u m I d x >>> − <<< c n t >>> ⋅ i + <<< c n t >>> .
+Sau khi cộng , chèn i vào hai <<< B I T >>> .
 
 Độ phức tạp
 
-Tiền xử lý : O ( N ) cho hai mảng cộng dồn .
+Tính L , R :
+<<< 𝑂 >>>
+(
+<<< 𝑁 >>>
+)
+O ( N ) .
 
-Mỗi truy vấn : hai phép kiểm tra cộng dồn O ( 1 ) + hai tìm kiếm nhị phân O ( log N ) .
+Sắp theo giá trị và quét với <<< B I T >>> :
+<<< 𝑂 >>>
+(
+<<< 𝑁 >>>
+log
+⁡
+<<< 𝑁 >>>
+)
+O ( <<< N l o g N >>> ) .
 
-Tổng : O ( ( N + M ) × log N ) cho một bộ test , thỏa mái với N , M ≤ 250 000 .
+Bộ nhớ
+<<< 𝑂 >>>
+(
+<<< 𝑁 >>>
+)
+O ( N ) .
 
-Bộ nhớ : O ( N ) .
+Kiểm tra biên
+– Mảng ngắn hơn 3 phần tử luôn cho kết quả 0 .
+– Khi
+<<< 𝑅 >>>
+[
+<<< 𝑖 >>>
+]
+−
+<<< 𝑖 >>>
+<
+2
+R [ i ] − i < 2 thì bỏ qua vì không đủ độ dài .
+– Chú ý dùng chỉ số 1 - <<< i n d e x >>> hay 0 - <<< i n d e x >>> nhất quán trong L , R và <<< B I T >>> .
 
-Chi tiết cần lưu ý
+Tóm tắt thao tác
 
-Mọi chỉ số tính theo một chuỗi đô ̃ i da ̀ i hai lần N , không cần phép chia dư .
+Với mỗi phần tử , tìm đoạn “ an toàn ” mà nó làm nắp ( dùng <<< s t a c k >>> ) .
 
-Dùng “ vô cực ” dưới dạng một giá trị lớn hơn r để so sánh dễ dàng .
+Duyệt phần tử theo giá trị giảm dần , <<< B I T >>> lưu các vị trí đã cao hơn hoặc bằng .
 
-Tìm kiếm nhị phân : có thể cài bằng hàm “ <<< l o w e r _ b o u n d >>> ” trên mảng cộng dồn .
+Mỗi lần lấy thống kê trong đoạn
+[
+<<< 𝑖 >>>
++
+2
+,
+<<< 𝑅 >>>
+[
+<<< 𝑖 >>>
+]
+−
+1
+]
+[ i + 2 , R [ i ] − 1 ] để cộng điểm .
 
-Đảm bảo dùng kiểu số 64 <<< b i t >>> khi cộng tổng <<< A _ j >>> vì có thể vượt 32 <<< b i t >>> .
+In tổng điểm sau khi xử lý hết mảng .
+
+Như vậy ta tính được
+∑
+<<< 𝑆 >>>
+<<< 𝑖 >>>
+,
+<<< 𝑗 >>>
+∑ S
+i , j
+​
+cho mảng dài tới một trăm nghìn phần tử trong thời gian hợp lý .
