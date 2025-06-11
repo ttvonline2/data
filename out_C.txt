@@ -1,1 +1,61 @@
-BàiC
+Hướng dẫn giải ( ngắn gọn , chỉ trình bày ý tưởng )
+
+Rút gọn bài toán
+
+Với mỗi vị trí , tính hiệu mới <<< D _ i >>> = <<< A _ i >>> − <<< B _ i >>> .
+
+Nhận xét then chốt :
+
+Z ( i , j ) chính là giá trị tuyệt đối của <<< D _ i >>> − <<< D _ j >>> .
+
+Vì vậy , đếm cặp có Z ( i , j ) ≤ T tương đương đếm cặp có | <<< D _ i >>> − <<< D _ j >>> | ≤ T .
+
+Chuẩn bị dữ liệu
+
+Sắp xếp mảng D tăng dần .
+
+Sau khi sắp , giá trị lớn nhất có thể cần xét là <<< D _ m a x >>> − <<< D _ m i n >>> ( khoảng 0 → 200 000 ) .
+
+Hàm đếm C ( T )
+
+Dùng hai con trỏ ( kỹ thuật “ cửa sổ trượt ” ) :
+
+Giữ con trỏ phải r sao cho <<< D _ r >>> − <<< D _ l >>> ≤ T .
+
+Với mỗi vị trí trái l , số cặp bắt đầu tại l thỏa điều kiện là r − l .
+
+Trượt l từ trái sang phải , mỗi lần di chuyển cộng dồn vào tổng .
+
+Tổng độ phức tạp một lần đếm : O ( N ) .
+
+Tìm D nhỏ nhất
+
+Hàm C ( T ) luôn tăng ( không giảm ) khi T tăng .
+
+Nhị phân trên đoạn [ 0 , <<< D _ m a x >>> − <<< D _ m i n >>> ] :
+
+Nếu C ( <<< m i d >>> ) < K ⇒ cần lớn hơn → dịch trái của nhị phân lên <<< m i d >>> + 1 .
+
+Ngược lại ⇒ vẫn đạt hoặc vượt K → hạ phải về <<< m i d >>> .
+
+Sau vòng lặp nhận được <<< T 0 >>> nhỏ nhất sao cho C ( <<< T 0 >>> ) ≥ K .
+
+Kiểm tra lại : nếu C ( <<< T 0 >>> ) đúng bằng K ⇒ kết quả là <<< T 0 >>> , ngược lại không tồn tại giá trị phù hợp → in − 1 .
+
+Độ phức tạp & giới hạn
+
+Sắp xếp : O ( N log N ) .
+
+Mỗi bước nhị phân : O ( N ) . Số bước nhị phân ≈ <<< l o g ₂ >>> ( 200 000 ) ~ 18 .
+
+Tổng cho một test : O ( N log N + N log <<< m a x D i f f >>> ) ≈ 5 × 10⁴ × ( Tổng log nhỏ ) → thoải mái trong giới hạn .
+
+Lưu ý biên
+
+K = 0 : cần kiểm tra số cặp trùng ( các <<< D _ i >>> bằng nhau ) .
+
+K = tổng số cặp : luôn ra T = <<< D _ m a x >>> − <<< D _ m i n >>> .
+
+Khi tính cặp , nhớ chỉ đếm i < j . Công thức “ cặp bắt đầu tại l ” nêu trên đã mặc định điều này .
+
+Làm đủ sáu bước trên là xác định được chính xác ( hoặc kết luận không tồn tại ) giá trị D nhỏ nhất thỏa C ( D ) = K . Chúc bạn thành công !

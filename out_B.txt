@@ -1,63 +1,66 @@
-Ý tưởng tổng quát
+1 . Phân tích bài toán
+Mỗi thanh gỗ dài L nếu quyết định cắt sẽ cho ra L thanh dài 1 kèm chi phí a · ( L - 1 ) ² + b .
 
-Đếm sẵn
+Nếu không cắt thì :
 
-Trước hết , kiểm tra có bao nhiêu gậy vốn đã dài 1 . Gọi con số này là sẵn .
+Với thanh dài 1 : đã có sẵn 1 thanh dài 1 , chi phí 0 .
 
-Nếu sẵn đã ≥ K thì khách đủ hàng , chi phí bằng 0 và kết thúc .
+Với thanh dài ≥ 2 : không đóng góp gì cho khách ( vì khách chỉ nhận thanh dài 1 ) .
 
-Khảo sát phần còn thiếu
+Ta phải chọn một tập con các thanh để cắt sao cho tổng số thanh dài 1 thu được ít nhất K và tổng chi phí nhỏ nhất .
 
-Cần thêm thiếu = K − sẵn gậy dài 1 ( nếu thiếu ≤ 0 thì bỏ qua bước này ) .
+Nhận xét : chi phí và lượng “ thu hoạch ” của từng thanh hoàn toàn độc lập ⇒ bài toán trở thành quy hoạch động kiểu “ ba lô ” ( <<< k n a p s a c k >>> ) với :
 
-Với mỗi gậy còn lại có chiều dài L ≥ 2 , ta biết :
+“ Trọng lượng ” của món hàng = số thanh 1 thu được ( chính là độ dài L ) .
 
-Khi không cắt : góp 0 gậy dài 1 , chi phí 0 .
+“ Giá ” của món hàng = chi phí cắt thanh đó .
 
-Khi cắt : góp L gậy dài 1 , chi phí bằng a nhân ( L trừ 1 ) bình phương cộng b .
+2 . Chuẩn bị dữ liệu
+Đếm sẵn số thanh dài 1 trong dãy S . Gọi kết quả là <<< c n t 1 >>> .
 
-Chuyển thành “ ba - lô 0 - 1 ”
+Giảm nhu cầu : <<< n e e d >>> = <<< m a x >>> ( 0 , K - <<< c n t 1 >>> ) .
 
-Mỗi gậy là một “ món đồ ” :
+Nếu <<< n e e d >>> = 0 thì đã đủ hàng , in ra 0 và sang test kế tiếp .
 
-“ Giá trị ” ( tạm gọi là số gậy 1 mang lại ) = L .
+Với mỗi thanh có độ dài ≥ 2 , tính trước chi phí cắt <<< c o s t >>> [ i ] = a · ( L - 1 ) ² + b .
 
-“ Giá ” ( chi phí ) = công thức chi phí kể trên .
+3 . Quy hoạch động 1 chiều
+Tạo mảng <<< d p >>> kích thước <<< n e e d >>> + <<< m a x L >>> ( tối đa khoảng 10 000 ) ,
 
-Cần chọn tập con sao cho tổng “ giá trị ” ≥ thiếu và tổng “ giá ” nhỏ nhất .
+<<< d p >>> [ x ] = chi phí nhỏ nhất thu được đúng x thanh dài 1 sau khi xét một số thanh .
 
-Lập bảng động ( <<< D P >>> )
+Khởi tạo : <<< d p >>> [ 0 ] = 0 , các vị trí khác gán giá trị “ vô cùng lớn ” .
 
-Tạo mảng <<< d p >>> [ x ] ( 0 ≤ x ≤ thiếu ) lưu chi phí tối thiểu để có đúng x gậy dài 1 . Khởi tạo : <<< d p >>> [ 0 ] = 0 , các ô khác gán vô cùng .
+Lần lượt duyệt từng thanh dài ≥ 2 :
 
-Duyệt từng gậy :
+Duyệt ngược x từ hiện tại xuống 0 .
 
-Sao chép mảng hiện tại sang mảng mới để tránh trùng cập nhật .
+Cập nhật : <<< d p >>> [ x + L ] = min ( <<< d p >>> [ x + L ] , <<< d p >>> [ x ] + <<< c o s t >>> ) ( nếu <<< d p >>> [ x ] khả thi ) .
 
-Với mỗi x hiện có , tính y = min ( thiếu , x + L ) ( cộng thêm gậy mới nhưng không cần vượt quá thiếu ) .
+Sau khi xét hết thanh , câu trả lời là giá trị nhỏ nhất của <<< d p >>> [ x ] với x ≥ <<< n e e d >>> .
 
-Cập nhật : chi phí tại y = min ( chi phí cũ , chi phí ở x cộng chi phí cắt gậy ) .
+4 . Chi tiết cần lưu ý
+Độ phức tạp :
 
-Sau khi xử lý hết gậy , kết quả nằm ở <<< d p >>> [ thiếu ] .
+Số phần tử của <<< d p >>> ≤ tổng độ dài các thanh ( ≤ 10 000 ) .
 
-Độ phức tạp
+Vòng lặp : N × 10 000 tối đa ≈ 1 triệu – hoàn toàn ổn cho tới 20 test .
 
-Số gậy ≤ 100 , thiếu tối đa 10 000 → khoảng một triệu phép gán , thoải mái cho yêu cầu .
+Kiểu số : chi phí có thể rất lớn ( a tới 10⁶ ; ( L - 1 ) ² tới 9 801 ) ⇒ dùng biến 64 <<< b i t >>> .
 
-Góc kiểm thử
+Thanh dài 1 không bao giờ cắt ; cứ cộng thẳng vào kết quả ban đầu ( đã xử lý ở bước 2 ) .
 
-Trường hợp không cần cắt : thiếu = 0 → trả về 0 ngay .
+5 . Tóm tắt luồng giải
+Đọc dữ liệu , tách K , dãy S , hệ số a , b .
 
-Trường hợp phải cắt ít gậy lớn : thuật toán tự thấy cắt gậy lớn đôi khi rẻ hơn cắt nhiều gậy nhỏ , vì chi phí a nhân bình phương ( L − 1 ) có thể tăng chậm so với lợi ích .
+Đếm sẵn các thanh dài 1 → giảm K .
 
-So khớp mẫu : Áp dụng quy trình trên cho hai ví dụ trong đề , kết quả lần lượt là 18 và 25 như bảng đáp án .
+Nếu đã đủ , in 0 . Ngược lại :
 
-Tóm tắt
+Khởi tạo <<< d p >>> .
 
-Đếm sẵn gậy dài 1 để biết còn thiếu bao nhiêu .
+Với từng thanh dài ≥ 2 : cập nhật <<< d p >>> như mô tả .
 
-Mỗi gậy dài ≥ 2 cho ta cặp ( số gậy 1 mang lại , chi phí ) .
+Tìm <<< d p >>> [ x ] nhỏ nhất với x ≥ <<< n e e d >>> → in ra .
 
-Dùng <<< D P >>> kiểu ba - lô 0 - 1 tối thiểu hoá chi phí đạt tổng giá trị ≥ thiếu .
-
-Độ phức tạp nhỏ , dễ cài .
+Sau khi hiểu quy trình trên , bạn có thể hiện thực bằng ngôn ngữ mình muốn mà không cần dùng lambda hay cú pháp phức tạp .
