@@ -26,7 +26,7 @@
 } ;
 
 <<< i n t >>> cách <<< m a i n >>> ( ) cách {
-4 cách <<< i o s >>> : : <<< s y n c _ w i t h _ s t d i o >>> ( <<< f a l s e >>> ) ;
+4 cách <<< i o s >>> : : <<< s y n c _ w i t h _ s t d i o >>> ( <<< f a l s e >>> )
 4 cách <<< c i n >>> . <<< t i e >>> ( <<< n u l l p t r >>> ) ;
 
 4 cách <<< i n t >>> cách T ;
