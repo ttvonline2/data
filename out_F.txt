@@ -1,63 +1,119 @@
-# <<< i n c l u d e >>> cách < <<< b i t s >>> / <<< s t d c >>> + + . h >
-<<< u s i n g >>> cách <<< n a m e s p a c e >>> cách <<< s t d >>> ;
+# <<< i n c l u d e >>> < <<< b i t s >>> / <<< s t d c >>> + + . h >
+<<< u s i n g >>> <<< n a m e s p a c e >>> <<< s t d >>> ;
+<<< c o n s t >>> <<< i n t >>> <<< M O D >>> = 444449 ;
+<<< c o n s t >>> <<< i n t >>> <<< N _ M A X >>> = 100000 ;
 
-<<< c o n s t >>> cách long cách long cách <<< I N F >>> cách = cách <<< 4 e 1 8 >>> ;
+/ * - - - - - - - - - - tiện ích <<< m o d u l o >>> - - - - - - - - - - * /
+long long <<< m o d _ p o w >>> ( long long a , long long e ) {
+long long r = 1 ;
+<<< w h i l e >>> ( e ) {
+<<< i f >>> ( e & 1 ) r = r * a % <<< M O D >>> ;
+a = a * a % <<< M O D >>> ;
+e > > = 1 ;
+}
+<<< r e t u r n >>> r ;
+}
 
-<<< i n t >>> cách <<< m a i n >>> ( ) cách {
-4 cách <<< i o s >>> : : <<< s y n c _ w i t h _ s t d i o >>> ( <<< f a l s e >>> ) ;
-4 cách <<< c i n >>> . <<< t i e >>> ( <<< n u l l p t r >>> ) ;
+/ * - - - - - - - - - - giai thừa & nghịch đảo - - - - - - - - - - * /
+long long <<< f a c t >>> [ <<< N _ M A X >>> + 1 ] , <<< i n v _ f a c t >>> [ <<< N _ M A X >>> + 1 ] ;
 
-4 cách <<< i n t >>> cách T ;
-4 cách <<< i f >>> cách ( ! ( <<< c i n >>> cách > > cách T ) ) cách <<< r e t u r n >>> cách 0 ;
-4 cách <<< w h i l e >>> cách ( T - - ) cách {
-8 cách <<< i n t >>> cách N , cách K ;
-8 cách long cách long cách a , cách b ;
-8 cách <<< c i n >>> cách > > cách N cách > > cách K cách > > cách a cách > > cách b ;
+<<< v o i d >>> <<< p r e p a r e _ f a c t o r i a l s >>> ( ) {
+<<< f a c t >>> [ 0 ] = 1 ;
+<<< f o r >>> ( <<< i n t >>> i = 1 ; i < = <<< N _ M A X >>> ; + + i ) <<< f a c t >>> [ i ] = <<< f a c t >>> [ i - 1 ] * i % <<< M O D >>> ;
+<<< i n v _ f a c t >>> [ <<< N _ M A X >>> ] = <<< m o d _ p o w >>> ( <<< f a c t >>> [ <<< N _ M A X >>> ] , <<< M O D >>> - 2 ) ;
+<<< f o r >>> ( <<< i n t >>> i = <<< N _ M A X >>> ; i > 0 ; - - i )
+<<< i n v _ f a c t >>> [ i - 1 ] = <<< i n v _ f a c t >>> [ i ] * i % <<< M O D >>> ;
+}
 
-8 cách vector < <<< i n t >>> > cách S ( N ) ;
-8 cách <<< f o r >>> cách ( <<< i n t >>> cách i cách = cách 0 ; cách i cách < cách N ; cách + + i ) cách <<< c i n >>> cách > > cách S [ i ] ;
+/ * - - - - - - - - - - tính C ( n , k ) với k ≤ <<< N _ M A X >>> - - - - - - - - - - * /
+long long <<< C _ l a r g e _ n >>> ( long long n , <<< i n t >>> k ) {
+<<< i f >>> ( k < 0 | | n < k ) <<< r e t u r n >>> 0 ;
+long long <<< r e s >>> = 1 ;
+<<< f o r >>> ( <<< i n t >>> i = 0 ; i < k ; + + i ) {
+long long <<< t e r m >>> = ( n - i ) % <<< M O D >>> ;
+<<< i f >>> ( <<< t e r m >>> < 0 ) <<< t e r m >>> + = <<< M O D >>> ;
+<<< r e s >>> = <<< r e s >>> * <<< t e r m >>> % <<< M O D >>> ;
+}
+<<< r e s >>> = <<< r e s >>> * <<< i n v _ f a c t >>> [ k ] % <<< M O D >>> ;
+<<< r e t u r n >>> <<< r e s >>> ;
+}
 
-8 cách / / cách Đếm cách sẵn cách số cách thanh cách dài cách 1
-8 cách <<< i n t >>> cách <<< c n t 1 >>> cách = cách 0 ;
-8 cách <<< f o r >>> cách ( <<< i n t >>> cách L cách : cách S ) cách <<< i f >>> cách ( L cách = = cách 1 ) cách + + <<< c n t 1 >>> ;
+/ * - - - - - - - - - - <<< m a i n >>> - - - - - - - - - - * /
+<<< i n t >>> <<< m a i n >>> ( ) {
+<<< i o s >>> : : <<< s y n c _ w i t h _ s t d i o >>> ( <<< f a l s e >>> ) ;
+<<< c i n >>> . <<< t i e >>> ( <<< n u l l p t r >>> ) ;
 
-8 cách <<< i n t >>> cách <<< n e e d >>> cách = cách <<< m a x >>> ( 0 , cách K cách - cách <<< c n t 1 >>> ) ;
-8 cách <<< i f >>> cách ( <<< n e e d >>> cách = = cách 0 ) cách {
-12 cách <<< c o u t >>> cách < < cách 0 cách < < cách ' \ n ' ;
-12 cách <<< c o n t i n u e >>> ;
-8 cách }
+<<< p r e p a r e _ f a c t o r i a l s >>> ( ) ;
 
-8 cách / / cách Tính cách tổng cách chiều cách dài cách các cách thanh cách ≥ cách 2 cách để cách giới cách hạn cách mảng cách <<< d p >>>
-8 cách <<< i n t >>> cách <<< s u m L e n >>> cách = cách 0 ;
-8 cách vector < <<< p a i r >>> < <<< i n t >>> , long cách long > > cách <<< i t e m s >>> ; 12 cách / / cách ( độ cách dài cách L , cách chi cách phí )
-8 cách <<< f o r >>> cách ( <<< i n t >>> cách L cách : cách S ) cách {
-12 cách <<< i f >>> cách ( L cách > = cách 2 ) cách {
-16 cách long cách long cách <<< c o s t >>> cách = cách a cách * cách <<< 1 L L >>> cách * cách ( L cách - cách 1 ) cách * cách ( L cách - cách 1 ) cách + cách b ;
-16 cách <<< i t e m s >>> . <<< p u s h _ b a c k >>> ( { L , cách <<< c o s t >>> } ) ;
-16 cách <<< s u m L e n >>> cách + = cách L ;
-12 cách }
-8 cách }
+<<< i n t >>> T ;
+<<< i f >>> ( ! ( <<< c i n >>> > > T ) ) <<< r e t u r n >>> 0 ;
+<<< w h i l e >>> ( T - - ) {
+<<< i n t >>> N ;
+long long V ;
+<<< c i n >>> > > N > > V ;
 
-8 cách / / cách Mảng cách <<< d p >>> [ x ] cách = cách chi cách phí cách nhỏ cách nhất cách thu cách được cách đúng cách x cách thanh cách 1
-8 cách vector < long cách long > cách <<< d p >>> ( <<< s u m L e n >>> cách + cách 1 , cách <<< I N F >>> ) ;
-8 cách <<< d p >>> [ 0 ] cách = cách 0 ;
+vector < long long > A ( N + 1 ) ;
+<<< f o r >>> ( <<< i n t >>> i = 1 ; i < = N ; + + i ) <<< c i n >>> > > A [ i ] ;
 
-8 cách <<< f o r >>> cách ( <<< a u t o >>> cách <<< i t e m >>> cách : cách <<< i t e m s >>> ) cách {
-12 cách <<< i n t >>> cách L cách = cách <<< i t e m >>> . <<< f i r s t >>> ;
-12 cách long cách long cách <<< c o s t >>> cách = cách <<< i t e m >>> . <<< s e c o n d >>> ;
-12 cách <<< f o r >>> cách ( <<< i n t >>> cách x cách = cách <<< s u m L e n >>> cách - cách L ; cách x cách > = cách 0 ; cách - - x ) cách {
-16 cách <<< i f >>> cách ( <<< d p >>> [ x ] cách = = cách <<< I N F >>> ) cách <<< c o n t i n u e >>> ;
-16 cách long cách long cách & <<< t a r g e t >>> cách = cách <<< d p >>> [ x cách + cách L ] ;
-16 cách long cách long cách <<< c a n d >>> cách = cách <<< d p >>> [ x ] cách + cách <<< c o s t >>> ;
-16 cách <<< i f >>> cách ( <<< c a n d >>> cách < cách <<< t a r g e t >>> ) cách <<< t a r g e t >>> cách = cách <<< c a n d >>> ;
-12 cách }
-8 cách }
+vector < <<< i n t >>> > L ( N + 1 ) , R ( N + 1 ) ;
+<<< f o r >>> ( <<< i n t >>> i = 1 ; i < = N ; + + i ) <<< c i n >>> > > L [ i ] ;
+<<< f o r >>> ( <<< i n t >>> i = 1 ; i < = N ; + + i ) <<< c i n >>> > > R [ i ] ;
 
-8 cách long cách long cách <<< a n s >>> cách = cách <<< I N F >>> ;
-8 cách <<< f o r >>> cách ( <<< i n t >>> cách x cách = cách <<< n e e d >>> ; cách x cách < = cách <<< s u m L e n >>> ; cách + + x ) cách {
-12 cách <<< i f >>> cách ( <<< d p >>> [ x ] cách < cách <<< a n s >>> ) cách <<< a n s >>> cách = cách <<< d p >>> [ x ] ;
-8 cách }
-8 cách <<< c o u t >>> cách < < cách <<< a n s >>> cách < < cách ' \ n ' ;
-4 cách }
-4 cách <<< r e t u r n >>> cách 0 ;
+/ * tìm gốc * /
+vector < <<< c h a r >>> > <<< i s _ c h i l d >>> ( N + 1 , 0 ) ;
+<<< f o r >>> ( <<< i n t >>> i = 1 ; i < = N ; + + i ) {
+<<< i f >>> ( L [ i ] ) <<< i s _ c h i l d >>> [ L [ i ] ] = 1 ;
+<<< i f >>> ( R [ i ] ) <<< i s _ c h i l d >>> [ R [ i ] ] = 1 ;
+}
+<<< i n t >>> <<< r o o t >>> = 1 ;
+<<< w h i l e >>> ( <<< r o o t >>> < = N & & <<< i s _ c h i l d >>> [ <<< r o o t >>> ] ) + + <<< r o o t >>> ;
+
+/ * duyệt in - <<< o r d e r >>> để gán thứ tự <<< p o s >>> * /
+vector < <<< i n t >>> > <<< p o s >>> ( N + 1 ) ;
+vector < <<< p a i r >>> < <<< i n t >>> , <<< i n t >>> > > <<< s t >>> ; / / ( <<< n o d e >>> , <<< s t a t e >>> ) – <<< s t a t e >>> 0 : chưa thăm , 1 : đã thăm trái
+<<< i n t >>> cur = <<< r o o t >>> , <<< c u r r e n t _ p o s >>> = 0 ;
+<<< w h i l e >>> ( cur | | ! <<< s t >>> . <<< e m p t y >>> ( ) ) {
+<<< w h i l e >>> ( cur ) {
+<<< s t >>> . <<< p u s h _ b a c k >>> ( { cur , 0 } ) ;
+cur = L [ cur ] ;
+}
+<<< a u t o >>> [ <<< n o d e >>> , <<< s t a t e >>> ] = <<< s t >>> . <<< b a c k >>> ( ) ; <<< s t >>> . <<< p o p _ b a c k >>> ( ) ;
+<<< c u r r e n t _ p o s >>> + + ;
+<<< p o s >>> [ <<< n o d e >>> ] = <<< c u r r e n t _ p o s >>> ;
+cur = R [ <<< n o d e >>> ] ;
+}
+
+/ * thu thập các mốc cố định * /
+vector < <<< p a i r >>> < <<< i n t >>> , long long > > <<< f i x e d _ n o d e s >>> ; / / ( <<< p o s >>> , x )
+<<< f o r >>> ( <<< i n t >>> i = 1 ; i < = N ; + + i )
+<<< i f >>> ( A [ i ] > 0 ) <<< f i x e d _ n o d e s >>> . <<< p u s h _ b a c k >>> ( { <<< p o s >>> [ i ] , A [ i ] } ) ;
+
+<<< s o r t >>> ( <<< f i x e d _ n o d e s >>> . <<< b e g i n >>> ( ) , <<< f i x e d _ n o d e s >>> . <<< e n d >>> ( ) ,
+[ ] ( <<< a u t o >>> & a , <<< a u t o >>> & b ) { <<< r e t u r n >>> a . <<< f i r s t >>> < b . <<< f i r s t >>> ; } ) ;
+
+<<< b o o l >>> ok = <<< t r u e >>> ;
+<<< f o r >>> ( <<< s i z e _ t >>> i = 1 ; i < <<< f i x e d _ n o d e s >>> . <<< s i z e >>> ( ) ; + + i )
+<<< i f >>> ( <<< f i x e d _ n o d e s >>> [ i ] . <<< s e c o n d >>> < = <<< f i x e d _ n o d e s >>> [ i - 1 ] . <<< s e c o n d >>> )
+ok = <<< f a l s e >>> ;
+
+<<< i f >>> ( ! ok ) {
+<<< c o u t >>> < < 0 < < ' \ n ' ;
+<<< c o n t i n u e >>> ;
+}
+
+/ * thêm hai mốc ảo * /
+<<< f i x e d _ n o d e s >>> . <<< i n s e r t >>> ( <<< f i x e d _ n o d e s >>> . <<< b e g i n >>> ( ) , { 0 , 0 } ) ;
+<<< f i x e d _ n o d e s >>> . <<< p u s h _ b a c k >>> ( { N + 1 , V + 1 } ) ;
+
+long long <<< a n s >>> = 1 ;
+<<< f o r >>> ( <<< s i z e _ t >>> i = 0 ; i + 1 < <<< f i x e d _ n o d e s >>> . <<< s i z e >>> ( ) ; + + i ) {
+long long len = <<< f i x e d _ n o d e s >>> [ i + 1 ] . <<< f i r s t >>> - <<< f i x e d _ n o d e s >>> [ i ] . <<< f i r s t >>> - 1 ; / / số vị trí
+long long <<< f r e e >>> = <<< f i x e d _ n o d e s >>> [ i + 1 ] . <<< s e c o n d >>> - <<< f i x e d _ n o d e s >>> [ i ] . <<< s e c o n d >>> - 1 ; / / số giá trị
+<<< i f >>> ( <<< f r e e >>> < len ) { <<< a n s >>> = 0 ; <<< b r e a k >>> ; }
+<<< a n s >>> = <<< a n s >>> * <<< C _ l a r g e _ n >>> ( <<< f r e e >>> , ( <<< i n t >>> ) len ) % <<< M O D >>> ;
+}
+
+<<< c o u t >>> < < <<< a n s >>> < < ' \ n ' ;
+}
+<<< r e t u r n >>> 0 ;
 }

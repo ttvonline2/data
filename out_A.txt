@@ -1,233 +1,133 @@
-Ý tưởng tổng quan
+# <<< i n c l u d e >>> cách < <<< b i t s >>> / <<< s t d c >>> + + . h >
+<<< u s i n g >>> cách <<< n a m e s p a c e >>> cách <<< s t d >>> ;
 
-Khi nào một đoạn được cộng điểm ?
-– Độ dài phải ≥ 3 .
-– Giá trị lớn nhất ở giữa không được vượt quá giá trị nhỏ hơn trong hai đầu đoạn .
-→ Hình dung đầu “ thấp ” ( giá trị nhỏ hơn ) như một cái nắp , mọi phần tử nằm giữa hai đầu phải chui lọt dưới cái nắp đó .
+/ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2 cách Tiền cách xử cách lý cách D cách ( đếm cách ước ) cách và cách S cách ( tổng cách ước ) cách cho cách 1 cách ≤ cách x cách ≤ cách <<< M A X N >>>
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - * /
+<<< c o n s t >>> cách <<< i n t >>> cách <<< M A X N >>> cách = cách 200000 ;
 
-Cố định đầu “ thấp ”
-Gọi chỉ số đầu thấp là i ( giả sử
-<<< 𝐵 >>>
-<<< 𝑖 >>>
-≤
-<<< 𝐵 >>>
-<<< 𝑗 >>>
-B
-i
-​
-≤ B
-j
-​
-) .
-Điều kiện trở thành :
-– Chọn một vị trí j > i + 1 .
-–
-<<< 𝐵 >>>
-<<< 𝑗 >>>
-≥
-<<< 𝐵 >>>
-<<< 𝑖 >>>
-B
-j
-​
-≥ B
-i
-​
-( đầu còn lại không thấp hơn nắp ) .
-– Tất cả phần tử giữa i và j đều ≤
-<<< 𝐵 >>>
-<<< 𝑖 >>>
-B
-i
-​
-.
+<<< s t a t i c >>> cách <<< i n t >>> cách D [ <<< M A X N >>> cách + cách 1 ] ;
+<<< s t a t i c >>> cách <<< i n t >>> cách S [ <<< M A X N >>> cách + cách 1 ] ;
 
-Khoanh đoạn an toàn quanh mỗi vị trí
-Với mỗi vị trí i , tìm biên trái L [ i ] và biên phải R [ i ] gần nhất có giá trị >
-<<< 𝐵 >>>
-<<< 𝑖 >>>
-B
-i
-​
-.
-Trong đoạn liên tiếp
-[
+/ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2 cách Cây cách phân cách đoạn cách “ <<< m e r g e >>> - <<< s o r t >>> ” cách cho cách từng cách giá cách trị cách d cách = cách D [ x ]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - * /
+<<< s t r u c t >>> cách <<< M e r g e S e g T r e e >>> cách {
+4 cách <<< i n t >>> cách n ; 31 cách / / cách số cách phần cách tử cách của cách nhóm
+4 cách vector < vector < <<< i n t >>> > > cách <<< t r e e >>> ; 12 cách / / cách tại cách mỗi cách nút cách lưu cách danh cách sách cách S cách đã cách sắp cách tăng
+4 cách <<< c o n s t >>> cách vector < <<< i n t >>> > * cách <<< i d x >>> ; 14 cách / / cách trỏ cách tới cách mảng cách lưu cách chỉ cách số cách gốc cách ( y )
 
-<<< 𝐿 >>>
-[
-<<< 𝑖 >>>
-]
-+
-1
-,
+4 cách <<< M e r g e S e g T r e e >>> ( ) cách : cách n ( 0 ) , cách <<< i d x >>> ( <<< n u l l p t r >>> ) cách { }
 
-<<< 𝑅 >>>
-[
-<<< 𝑖 >>>
-]
-−
-1
-]
-[ L [ i ] + 1 , R [ i ] − 1 ] mọi phần tử ≤
-<<< 𝐵 >>>
-<<< 𝑖 >>>
-B
-i
-​
-.
-→ Nếu j nằm trong
-[
-<<< 𝑖 >>>
-+
-2
-,
+4 cách <<< v o i d >>> cách <<< b u i l d >>> ( <<< c o n s t >>> cách vector < <<< i n t >>> > & cách <<< p o s i t i o n s >>> ) cách {
+8 cách <<< i d x >>> cách = cách & <<< p o s i t i o n s >>> ;
+8 cách n 3 cách = cách ( <<< i n t >>> ) <<< p o s i t i o n s >>> . <<< s i z e >>> ( ) ;
+8 cách <<< i f >>> cách ( n cách = = cách 0 ) cách <<< r e t u r n >>> ;
+8 cách <<< t r e e >>> . <<< r e s i z e >>> ( n cách * cách 4 ) ;
+8 cách <<< b u i l d D F S >>> ( 1 , cách 0 , cách n cách - cách 1 ) ;
+4 cách }
 
-<<< 𝑅 >>>
-[
-<<< 𝑖 >>>
-]
-−
-1
-]
-[ i + 2 , R [ i ] − 1 ] thì điều kiện “ lọt nắp ” tự đảm bảo .
+4 cách <<< v o i d >>> cách <<< b u i l d D F S >>> ( <<< i n t >>> cách <<< n o d e >>> , cách <<< i n t >>> cách l , cách <<< i n t >>> cách r ) cách {
+8 cách <<< i f >>> cách ( l cách = = cách r ) cách {
+12 cách <<< t r e e >>> [ <<< n o d e >>> ] cách = cách { cách S [ cách ( * <<< i d x >>> ) [ l ] cách ] cách } ;
+12 cách <<< r e t u r n >>> ;
+8 cách }
+8 cách <<< i n t >>> cách <<< m i d >>> cách = cách ( l cách + cách r ) cách > > cách 1 ;
+8 cách <<< b u i l d D F S >>> ( <<< n o d e >>> cách < < cách 1 , cách l , cách <<< m i d >>> ) ;
+8 cách <<< b u i l d D F S >>> ( <<< n o d e >>> cách < < cách 1 cách | cách 1 , cách <<< m i d >>> cách + cách 1 , cách r ) ;
+8 cách <<< c o n s t >>> cách <<< a u t o >>> cách & a cách = cách <<< t r e e >>> [ <<< n o d e >>> cách < < cách 1 ] ;
+8 cách <<< c o n s t >>> cách <<< a u t o >>> cách & b cách = cách <<< t r e e >>> [ <<< n o d e >>> cách < < cách 1 cách | cách 1 ] ;
+8 cách <<< t r e e >>> [ <<< n o d e >>> ] . <<< r e s i z e >>> ( a . <<< s i z e >>> ( ) cách + cách b . <<< s i z e >>> ( ) ) ;
+8 cách <<< m e r g e >>> ( a . <<< b e g i n >>> ( ) , cách a . <<< e n d >>> ( ) , cách b . <<< b e g i n >>> ( ) , cách b . <<< e n d >>> ( ) , cách <<< t r e e >>> [ <<< n o d e >>> ] . <<< b e g i n >>> ( ) ) ;
+4 cách }
 
-L [ i ] , R [ i ] tính nhanh bằng <<< s t a c k >>> đơn điệu ( duyệt một lần từ trái qua phải cho R , từ phải sang trái cho L ) .
+4 cách / * cách đếm cách trong cách đoạn cách con cách <<< p o s >>> cách [ <<< q l >>> , cách <<< q r >>> ] cách bao cách nhiêu cách S cách nằm cách trong cách [ <<< s L >>> , cách <<< s R >>> ] cách * /
+4 cách <<< i n t >>> cách <<< q u e r y >>> ( <<< i n t >>> cách <<< q l >>> , cách <<< i n t >>> cách <<< q r >>> , cách <<< i n t >>> cách <<< s L >>> , cách <<< i n t >>> cách <<< s R >>> ) cách <<< c o n s t >>> cách {
+8 cách <<< i f >>> cách ( n cách = = cách 0 cách | | cách <<< q l >>> cách > cách <<< q r >>> ) cách <<< r e t u r n >>> cách 0 ;
+8 cách <<< r e t u r n >>> cách <<< q u e r y D F S >>> ( 1 , cách 0 , cách n cách - cách 1 , cách <<< q l >>> , cách <<< q r >>> , cách <<< s L >>> , cách <<< s R >>> ) ;
+4 cách }
 
-Đếm nhanh các j phù hợp
-Duyệt các vị trí theo giá trị giảm dần .
-– Những chỉ số đã duyệt luôn có
-<<< 𝐵 >>>
-<<< 𝑘 >>>
-≥
-<<< 𝐵 >>>
-<<< 𝑖 >>>
-B
-k
-​
-≥ B
-i
-​
-.
-– Lưu các chỉ số đã duyệt vào một cấu trúc <<< F e n w i c k >>> / <<< S e g m e n t >>> <<< t r e e >>> với :
-<<< B I T >>> ₁ : số lượng chỉ số xếp ( để biết có bao nhiêu j ) .
-<<< B I T >>> ₂ : tổng vị trí xếp ( để tính nhanh tổng độ dài ) .
+4 cách <<< i n t >>> cách <<< q u e r y D F S >>> ( <<< i n t >>> cách <<< n o d e >>> , cách <<< i n t >>> cách l , cách <<< i n t >>> cách r , cách <<< i n t >>> cách <<< q l >>> , cách <<< i n t >>> cách <<< q r >>> , cách <<< i n t >>> cách <<< s L >>> , cách <<< i n t >>> cách <<< s R >>> ) cách <<< c o n s t >>> cách {
+8 cách <<< i f >>> cách ( <<< q r >>> cách < cách l cách | | cách r cách < cách <<< q l >>> ) cách <<< r e t u r n >>> cách 0 ;
+8 cách <<< i f >>> cách ( <<< q l >>> cách < = cách l cách & & cách r cách < = cách <<< q r >>> ) cách {
+12 cách <<< c o n s t >>> cách <<< a u t o >>> cách & <<< v e c >>> cách = cách <<< t r e e >>> [ <<< n o d e >>> ] ;
+12 cách <<< a u t o >>> cách lo cách = cách <<< l o w e r _ b o u n d >>> ( <<< v e c >>> . <<< b e g i n >>> ( ) , cách <<< v e c >>> . <<< e n d >>> ( ) , cách <<< s L >>> ) ;
+12 cách <<< a u t o >>> cách hi cách = cách <<< u p p e r _ b o u n d >>> ( <<< v e c >>> . <<< b e g i n >>> ( ) , cách <<< v e c >>> . <<< e n d >>> ( ) , cách <<< s R >>> ) ;
+12 cách <<< r e t u r n >>> cách <<< i n t >>> ( hi cách - cách lo ) ;
+8 cách }
+8 cách <<< i n t >>> cách <<< m i d >>> cách = cách ( l cách + cách r ) cách > > cách 1 ;
+8 cách <<< r e t u r n >>> cách <<< q u e r y D F S >>> ( <<< n o d e >>> cách < < cách 1 , cách l , cách <<< m i d >>> , cách <<< q l >>> , cách <<< q r >>> , cách <<< s L >>> , cách <<< s R >>> ) cách +
+15 cách <<< q u e r y D F S >>> ( <<< n o d e >>> cách < < cách 1 cách | cách 1 , cách <<< m i d >>> cách + cách 1 , cách r , cách <<< q l >>> , cách <<< q r >>> , cách <<< s L >>> , cách <<< s R >>> ) ;
+4 cách }
+} ;
 
-Khi đang ở i :
+/ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2 cách Gom cách nhóm cách theo cách D cách và cách xây cách cây
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - * /
+<<< i n t >>> cách <<< m a i n >>> ( ) cách {
+4 cách <<< i o s >>> : : <<< s y n c _ w i t h _ s t d i o >>> ( <<< f a l s e >>> ) ;
+4 cách <<< c i n >>> . <<< t i e >>> ( <<< n u l l p t r >>> ) ;
 
-Cần thống kê trong đoạn
-[
-<<< 𝑖 >>>
-+
-2
-,
+4 cách / * cách 1 . cách Tính cách D cách và cách S cách cho cách mọi cách số cách tới cách <<< M A X N >>> cách * /
+4 cách <<< f o r >>> cách ( <<< i n t >>> cách i cách = cách 1 ; cách i cách < = cách <<< M A X N >>> ; cách + + i )
+8 cách <<< f o r >>> cách ( <<< i n t >>> cách j cách = cách i ; cách j cách < = cách <<< M A X N >>> ; cách j cách + = cách i ) cách {
+12 cách + + D [ j ] ;
+12 cách S [ j ] cách + = cách i ;
+8 cách }
 
-<<< 𝑅 >>>
-[
-<<< 𝑖 >>>
-]
-−
-1
-]
-[ i + 2 , R [ i ] − 1 ] .
+4 cách / * cách 2 . cách Gom cách nhóm cách theo cách D cách * /
+4 cách <<< i n t >>> cách <<< m a x D >>> cách = cách * <<< m a x _ e l e m e n t >>> ( D cách + cách 1 , cách D cách + cách <<< M A X N >>> cách + cách 1 ) ;
+4 cách vector < vector < <<< i n t >>> > > cách <<< p o s i t i o n s >>> ( <<< m a x D >>> cách + cách 1 ) ;
+4 cách <<< f o r >>> cách ( <<< i n t >>> cách i cách = cách 1 ; cách i cách < = cách <<< M A X N >>> ; cách + + i ) cách <<< p o s i t i o n s >>> [ D [ i ] ] . <<< p u s h _ b a c k >>> ( i ) ;
 
-Lấy <<< c n t >>> = số vị trí j trong đoạn , <<< s u m I d x >>> = tổng các vị trí đó .
+4 cách / * cách 3 . cách Xây cách cây cách <<< m e r g e >>> - <<< s o r t >>> cách cho cách từng cách nhóm cách * /
+4 cách vector < <<< M e r g e S e g T r e e >>> > cách <<< s e g >>> ( <<< m a x D >>> cách + cách 1 ) ;
+4 cách <<< f o r >>> cách ( <<< i n t >>> cách d cách = cách 1 ; cách d cách < = cách <<< m a x D >>> ; cách + + d ) cách <<< s e g >>> [ d ] . <<< b u i l d >>> ( <<< p o s i t i o n s >>> [ d ] ) ;
 
-Tổng điểm do i đóng góp là
+4 cách / * cách 4 . cách Xử cách lý cách truy cách vấn cách * /
+4 cách <<< i n t >>> cách T ; 2 cách <<< c i n >>> cách > > cách T ;
+4 cách <<< w h i l e >>> cách ( T - - ) cách {
+8 cách <<< i n t >>> cách N , cách M ; 2 cách <<< c i n >>> cách > > cách N cách > > cách M ;
+8 cách vector < long cách long > cách <<< a n s w e r >>> ( M ) ;
 
-∑
-<<< 𝑗 >>>
-(
-<<< 𝑗 >>>
-−
-<<< 𝑖 >>>
-+
-1
-)
-=
-<<< s u m I d x >>>
-−
-<<< c n t >>>
-⋅
-<<< 𝑖 >>>
-+
-<<< c n t >>>
-.
-j
-∑
-​
-( j − i + 1 ) = <<< s u m I d x >>> − <<< c n t >>> ⋅ i + <<< c n t >>> .
-Sau khi cộng , chèn i vào hai <<< B I T >>> .
+8 cách <<< f o r >>> cách ( <<< i n t >>> cách i cách = cách 0 ; cách i cách < cách M ; cách + + i ) cách {
+12 cách <<< i n t >>> cách x , cách A , cách B , cách C ; 2 cách <<< c i n >>> cách > > cách x cách > > cách A cách > > cách B cách > > cách C ;
 
-Độ phức tạp
+12 cách <<< i n t >>> cách L cách = cách <<< m a x >>> ( 1 , cách x cách - cách A ) ;
+12 cách <<< i n t >>> cách R cách = cách min ( N , cách x cách + cách A ) ;
 
-Tính L , R :
-<<< 𝑂 >>>
-(
-<<< 𝑁 >>>
-)
-O ( N ) .
+12 cách <<< i n t >>> cách <<< d 0 >>> cách = cách D [ x ] ;
+12 cách <<< i n t >>> cách <<< d L >>> cách = cách <<< m a x >>> ( 1 , cách <<< d 0 >>> cách - cách B ) ;
+12 cách <<< i n t >>> cách <<< d R >>> cách = cách min ( <<< m a x D >>> , cách <<< d 0 >>> cách + cách B ) ;
 
-Sắp theo giá trị và quét với <<< B I T >>> :
-<<< 𝑂 >>>
-(
-<<< 𝑁 >>>
-log
-⁡
-<<< 𝑁 >>>
-)
-O ( <<< N l o g N >>> ) .
+12 cách <<< i n t >>> cách <<< s L >>> cách = cách S [ x ] cách - cách C ;
+12 cách <<< i n t >>> cách <<< s R >>> cách = cách S [ x ] cách + cách C ;
 
-Bộ nhớ
-<<< 𝑂 >>>
-(
-<<< 𝑁 >>>
-)
-O ( N ) .
+12 cách long cách long cách <<< t o t a l >>> cách = cách 0 ;
+12 cách / * cách duyệt cách d cách trong cách [ <<< d L >>> , cách <<< d R >>> ] cách – cách tối cách đa cách 11 cách giá cách trị cách * /
+12 cách <<< f o r >>> cách ( <<< i n t >>> cách d cách = cách <<< d L >>> ; cách d cách < = cách <<< d R >>> ; cách + + d ) cách {
+16 cách <<< c o n s t >>> cách <<< a u t o >>> cách & <<< i d x >>> cách = cách <<< p o s i t i o n s >>> [ d ] ;
+16 cách <<< i f >>> cách ( <<< i d x >>> . <<< e m p t y >>> ( ) ) cách <<< c o n t i n u e >>> ;
 
-Kiểm tra biên
-– Mảng ngắn hơn 3 phần tử luôn cho kết quả 0 .
-– Khi
-<<< 𝑅 >>>
-[
-<<< 𝑖 >>>
-]
-−
-<<< 𝑖 >>>
-<
-2
-R [ i ] − i < 2 thì bỏ qua vì không đủ độ dài .
-– Chú ý dùng chỉ số 1 - <<< i n d e x >>> hay 0 - <<< i n d e x >>> nhất quán trong L , R và <<< B I T >>> .
+16 cách / * cách cắt cách đoạn cách L . . R cách trên cách vector cách chỉ cách số cách của cách nhóm cách d cách * /
+16 cách <<< a u t o >>> cách <<< i t L >>> cách = cách <<< l o w e r _ b o u n d >>> ( <<< i d x >>> . <<< b e g i n >>> ( ) , cách <<< i d x >>> . <<< e n d >>> ( ) , cách L ) ;
+16 cách <<< a u t o >>> cách <<< i t R >>> cách = cách <<< u p p e r _ b o u n d >>> ( <<< i d x >>> . <<< b e g i n >>> ( ) , cách <<< i d x >>> . <<< e n d >>> ( ) , cách R ) ;
+16 cách <<< i f >>> cách ( <<< i t L >>> cách = = cách <<< i t R >>> ) cách <<< c o n t i n u e >>> ; 11 cách / / cách không cách có cách phần cách tử cách nào
 
-Tóm tắt thao tác
+16 cách <<< i n t >>> cách <<< l e f t P o s >>> 2 cách = cách <<< i n t >>> ( <<< i t L >>> cách - cách <<< i d x >>> . <<< b e g i n >>> ( ) ) ;
+16 cách <<< i n t >>> cách <<< r i g h t P o s >>> cách = cách <<< i n t >>> ( <<< i t R >>> cách - cách <<< i d x >>> . <<< b e g i n >>> ( ) ) cách - cách 1 ;
 
-Với mỗi phần tử , tìm đoạn “ an toàn ” mà nó làm nắp ( dùng <<< s t a c k >>> ) .
+16 cách <<< t o t a l >>> cách + = cách <<< s e g >>> [ d ] . <<< q u e r y >>> ( <<< l e f t P o s >>> , cách <<< r i g h t P o s >>> , cách <<< s L >>> , cách <<< s R >>> ) ;
+12 cách }
+12 cách <<< a n s w e r >>> [ i ] cách = cách <<< t o t a l >>> ;
+8 cách }
 
-Duyệt phần tử theo giá trị giảm dần , <<< B I T >>> lưu các vị trí đã cao hơn hoặc bằng .
-
-Mỗi lần lấy thống kê trong đoạn
-[
-<<< 𝑖 >>>
-+
-2
-,
-<<< 𝑅 >>>
-[
-<<< 𝑖 >>>
-]
-−
-1
-]
-[ i + 2 , R [ i ] − 1 ] để cộng điểm .
-
-In tổng điểm sau khi xử lý hết mảng .
-
-Như vậy ta tính được
-∑
-<<< 𝑆 >>>
-<<< 𝑖 >>>
-,
-<<< 𝑗 >>>
-∑ S
-i , j
-​
-cho mảng dài tới một trăm nghìn phần tử trong thời gian hợp lý .
+8 cách / * cách 5 . cách Xuất cách kết cách quả cách * /
+8 cách <<< f o r >>> cách ( <<< i n t >>> cách i cách = cách 0 ; cách i cách < cách M ; cách + + i ) cách {
+12 cách <<< i f >>> cách ( i ) cách <<< c o u t >>> cách < < cách ' cách ' ;
+12 cách <<< c o u t >>> cách < < cách <<< a n s w e r >>> [ i ] ;
+8 cách }
+8 cách <<< c o u t >>> cách < < cách ' \ n ' ;
+4 cách }
+4 cách <<< r e t u r n >>> cách 0 ;
+}

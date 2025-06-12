@@ -1,66 +1,119 @@
-1 . Phân tích bài toán
-Mỗi thanh gỗ dài L nếu quyết định cắt sẽ cho ra L thanh dài 1 kèm chi phí a · ( L - 1 ) ² + b .
+# <<< i n c l u d e >>> cách < <<< b i t s >>> / <<< s t d c >>> + + . h >
+<<< u s i n g >>> cách <<< n a m e s p a c e >>> cách <<< s t d >>> ;
+<<< c o n s t >>> cách <<< i n t >>> cách <<< M O D >>> cách = cách 444449 ;
+<<< c o n s t >>> cách <<< i n t >>> cách <<< N _ M A X >>> cách = cách 100000 ;
 
-Nếu không cắt thì :
+/ * cách - - - - - - - - - - cách tiện cách ích cách <<< m o d u l o >>> cách - - - - - - - - - - cách * /
+long cách long cách <<< m o d _ p o w >>> ( long cách long cách a , cách long cách long cách e ) cách {
+4 cách long cách long cách r cách = cách 1 ;
+4 cách <<< w h i l e >>> cách ( e ) cách {
+8 cách <<< i f >>> cách ( e cách & cách 1 ) cách r cách = cách r cách * cách a cách % cách <<< M O D >>> ;
+8 cách a cách = cách a cách * cách a cách % cách <<< M O D >>> ;
+8 cách e cách > > = cách 1 ;
+4 cách }
+4 cách <<< r e t u r n >>> cách r ;
+}
 
-Với thanh dài 1 : đã có sẵn 1 thanh dài 1 , chi phí 0 .
+/ * cách - - - - - - - - - - cách giai cách thừa cách & cách nghịch cách đảo cách - - - - - - - - - - cách * /
+long cách long cách <<< f a c t >>> [ <<< N _ M A X >>> cách + cách 1 ] , cách <<< i n v _ f a c t >>> [ <<< N _ M A X >>> cách + cách 1 ] ;
 
-Với thanh dài ≥ 2 : không đóng góp gì cho khách ( vì khách chỉ nhận thanh dài 1 ) .
+<<< v o i d >>> cách <<< p r e p a r e _ f a c t o r i a l s >>> ( ) cách {
+4 cách <<< f a c t >>> [ 0 ] cách = cách 1 ;
+4 cách <<< f o r >>> cách ( <<< i n t >>> cách i cách = cách 1 ; cách i cách < = cách <<< N _ M A X >>> ; cách + + i ) cách <<< f a c t >>> [ i ] cách = cách <<< f a c t >>> [ i cách - cách 1 ] cách * cách i cách % cách <<< M O D >>> ;
+4 cách <<< i n v _ f a c t >>> [ <<< N _ M A X >>> ] cách = cách <<< m o d _ p o w >>> ( <<< f a c t >>> [ <<< N _ M A X >>> ] , cách <<< M O D >>> cách - cách 2 ) ;
+4 cách <<< f o r >>> cách ( <<< i n t >>> cách i cách = cách <<< N _ M A X >>> ; cách i cách > cách 0 ; cách - - i )
+8 cách <<< i n v _ f a c t >>> [ i cách - cách 1 ] cách = cách <<< i n v _ f a c t >>> [ i ] cách * cách i cách % cách <<< M O D >>> ;
+}
 
-Ta phải chọn một tập con các thanh để cắt sao cho tổng số thanh dài 1 thu được ít nhất K và tổng chi phí nhỏ nhất .
+/ * cách - - - - - - - - - - cách tính cách C ( n , k ) cách với cách k cách ≤ cách <<< N _ M A X >>> cách - - - - - - - - - - cách * /
+long cách long cách <<< C _ l a r g e _ n >>> ( long cách long cách n , cách <<< i n t >>> cách k ) cách {
+4 cách <<< i f >>> cách ( k cách < cách 0 cách | | cách n cách < cách k ) cách <<< r e t u r n >>> cách 0 ;
+4 cách long cách long cách <<< r e s >>> cách = cách 1 ;
+4 cách <<< f o r >>> cách ( <<< i n t >>> cách i cách = cách 0 ; cách i cách < cách k ; cách + + i ) cách {
+8 cách long cách long cách <<< t e r m >>> cách = cách ( n cách - cách i ) cách % cách <<< M O D >>> ;
+8 cách <<< i f >>> cách ( <<< t e r m >>> cách < cách 0 ) cách <<< t e r m >>> cách + = cách <<< M O D >>> ;
+8 cách <<< r e s >>> cách = cách <<< r e s >>> cách * cách <<< t e r m >>> cách % cách <<< M O D >>> ;
+4 cách }
+4 cách <<< r e s >>> cách = cách <<< r e s >>> cách * cách <<< i n v _ f a c t >>> [ k ] cách % cách <<< M O D >>> ;
+4 cách <<< r e t u r n >>> cách <<< r e s >>> ;
+}
 
-Nhận xét : chi phí và lượng “ thu hoạch ” của từng thanh hoàn toàn độc lập ⇒ bài toán trở thành quy hoạch động kiểu “ ba lô ” ( <<< k n a p s a c k >>> ) với :
+/ * cách - - - - - - - - - - cách <<< m a i n >>> cách - - - - - - - - - - cách * /
+<<< i n t >>> cách <<< m a i n >>> ( ) cách {
+4 cách <<< i o s >>> : : <<< s y n c _ w i t h _ s t d i o >>> ( <<< f a l s e >>> ) ;
+4 cách <<< c i n >>> . <<< t i e >>> ( <<< n u l l p t r >>> ) ;
 
-“ Trọng lượng ” của món hàng = số thanh 1 thu được ( chính là độ dài L ) .
+4 cách <<< p r e p a r e _ f a c t o r i a l s >>> ( ) ;
 
-“ Giá ” của món hàng = chi phí cắt thanh đó .
+4 cách <<< i n t >>> cách T ;
+4 cách <<< i f >>> cách ( ! ( <<< c i n >>> cách > > cách T ) ) cách <<< r e t u r n >>> cách 0 ;
+4 cách <<< w h i l e >>> cách ( T - - ) cách {
+8 cách <<< i n t >>> cách N ;
+8 cách long cách long cách V ;
+8 cách <<< c i n >>> cách > > cách N cách > > cách V ;
 
-2 . Chuẩn bị dữ liệu
-Đếm sẵn số thanh dài 1 trong dãy S . Gọi kết quả là <<< c n t 1 >>> .
+8 cách vector < long cách long > cách A ( N cách + cách 1 ) ;
+8 cách <<< f o r >>> cách ( <<< i n t >>> cách i cách = cách 1 ; cách i cách < = cách N ; cách + + i ) cách <<< c i n >>> cách > > cách A [ i ] ;
 
-Giảm nhu cầu : <<< n e e d >>> = <<< m a x >>> ( 0 , K - <<< c n t 1 >>> ) .
+8 cách vector < <<< i n t >>> > cách L ( N cách + cách 1 ) , cách R ( N cách + cách 1 ) ;
+8 cách <<< f o r >>> cách ( <<< i n t >>> cách i cách = cách 1 ; cách i cách < = cách N ; cách + + i ) cách <<< c i n >>> cách > > cách L [ i ] ;
+8 cách <<< f o r >>> cách ( <<< i n t >>> cách i cách = cách 1 ; cách i cách < = cách N ; cách + + i ) cách <<< c i n >>> cách > > cách R [ i ] ;
 
-Nếu <<< n e e d >>> = 0 thì đã đủ hàng , in ra 0 và sang test kế tiếp .
+8 cách / * cách tìm cách gốc cách * /
+8 cách vector < <<< c h a r >>> > cách <<< i s _ c h i l d >>> ( N cách + cách 1 , cách 0 ) ;
+8 cách <<< f o r >>> cách ( <<< i n t >>> cách i cách = cách 1 ; cách i cách < = cách N ; cách + + i ) cách {
+12 cách <<< i f >>> cách ( L [ i ] ) cách <<< i s _ c h i l d >>> [ L [ i ] ] cách = cách 1 ;
+12 cách <<< i f >>> cách ( R [ i ] ) cách <<< i s _ c h i l d >>> [ R [ i ] ] cách = cách 1 ;
+8 cách }
+8 cách <<< i n t >>> cách <<< r o o t >>> cách = cách 1 ;
+8 cách <<< w h i l e >>> cách ( <<< r o o t >>> cách < = cách N cách & & cách <<< i s _ c h i l d >>> [ <<< r o o t >>> ] ) cách + + <<< r o o t >>> ;
 
-Với mỗi thanh có độ dài ≥ 2 , tính trước chi phí cắt <<< c o s t >>> [ i ] = a · ( L - 1 ) ² + b .
+8 cách / * cách duyệt cách in - <<< o r d e r >>> cách để cách gán cách thứ cách tự cách <<< p o s >>> cách * /
+8 cách vector < <<< i n t >>> > cách <<< p o s >>> ( N cách + cách 1 ) ;
+8 cách vector < <<< p a i r >>> < <<< i n t >>> , <<< i n t >>> > > cách <<< s t >>> ; cách / / cách ( <<< n o d e >>> , cách <<< s t a t e >>> ) cách – cách <<< s t a t e >>> cách 0 : cách chưa cách thăm , cách 1 : cách đã cách thăm cách trái
+8 cách <<< i n t >>> cách cur cách = cách <<< r o o t >>> , cách <<< c u r r e n t _ p o s >>> cách = cách 0 ;
+8 cách <<< w h i l e >>> cách ( cur cách | | cách ! <<< s t >>> . <<< e m p t y >>> ( ) ) cách {
+12 cách <<< w h i l e >>> cách ( cur ) cách {
+16 cách <<< s t >>> . <<< p u s h _ b a c k >>> ( { cur , cách 0 } ) ;
+16 cách cur cách = cách L [ cur ] ;
+12 cách }
+12 cách <<< a u t o >>> cách [ <<< n o d e >>> , cách <<< s t a t e >>> ] cách = cách <<< s t >>> . <<< b a c k >>> ( ) ; cách <<< s t >>> . <<< p o p _ b a c k >>> ( ) ;
+12 cách <<< c u r r e n t _ p o s >>> + + ;
+12 cách <<< p o s >>> [ <<< n o d e >>> ] cách = cách <<< c u r r e n t _ p o s >>> ;
+12 cách cur cách = cách R [ <<< n o d e >>> ] ;
+8 cách }
 
-3 . Quy hoạch động 1 chiều
-Tạo mảng <<< d p >>> kích thước <<< n e e d >>> + <<< m a x L >>> ( tối đa khoảng 10 000 ) ,
+8 cách / * cách thu cách thập cách các cách mốc cách cố cách định cách * /
+8 cách vector < <<< p a i r >>> < <<< i n t >>> , long cách long > > cách <<< f i x e d _ n o d e s >>> ; cách / / cách ( <<< p o s >>> , cách x )
+8 cách <<< f o r >>> cách ( <<< i n t >>> cách i cách = cách 1 ; cách i cách < = cách N ; cách + + i )
+12 cách <<< i f >>> cách ( A [ i ] cách > cách 0 ) cách <<< f i x e d _ n o d e s >>> . <<< p u s h _ b a c k >>> ( { <<< p o s >>> [ i ] , cách A [ i ] } ) ;
 
-<<< d p >>> [ x ] = chi phí nhỏ nhất thu được đúng x thanh dài 1 sau khi xét một số thanh .
+8 cách <<< s o r t >>> ( <<< f i x e d _ n o d e s >>> . <<< b e g i n >>> ( ) , cách <<< f i x e d _ n o d e s >>> . <<< e n d >>> ( ) ,
+13 cách [ ] ( <<< a u t o >>> cách & a , cách <<< a u t o >>> cách & b ) { cách <<< r e t u r n >>> cách a . <<< f i r s t >>> cách < cách b . <<< f i r s t >>> ; cách } ) ;
 
-Khởi tạo : <<< d p >>> [ 0 ] = 0 , các vị trí khác gán giá trị “ vô cùng lớn ” .
+8 cách <<< b o o l >>> cách ok cách = cách <<< t r u e >>> ;
+8 cách <<< f o r >>> cách ( <<< s i z e _ t >>> cách i cách = cách 1 ; cách i cách < cách <<< f i x e d _ n o d e s >>> . <<< s i z e >>> ( ) ; cách + + i )
+12 cách <<< i f >>> cách ( <<< f i x e d _ n o d e s >>> [ i ] . <<< s e c o n d >>> cách < = cách <<< f i x e d _ n o d e s >>> [ i - 1 ] . <<< s e c o n d >>> )
+16 cách ok cách = cách <<< f a l s e >>> ;
 
-Lần lượt duyệt từng thanh dài ≥ 2 :
+8 cách <<< i f >>> cách ( ! ok ) cách {
+12 cách <<< c o u t >>> cách < < cách 0 cách < < cách ' \ n ' ;
+12 cách <<< c o n t i n u e >>> ;
+8 cách }
 
-Duyệt ngược x từ hiện tại xuống 0 .
+8 cách / * cách thêm cách hai cách mốc cách ảo cách * /
+8 cách <<< f i x e d _ n o d e s >>> . <<< i n s e r t >>> ( <<< f i x e d _ n o d e s >>> . <<< b e g i n >>> ( ) , cách { 0 , cách 0 } ) ;
+8 cách <<< f i x e d _ n o d e s >>> . <<< p u s h _ b a c k >>> ( { N cách + cách 1 , cách V cách + cách 1 } ) ;
 
-Cập nhật : <<< d p >>> [ x + L ] = min ( <<< d p >>> [ x + L ] , <<< d p >>> [ x ] + <<< c o s t >>> ) ( nếu <<< d p >>> [ x ] khả thi ) .
+8 cách long cách long cách <<< a n s >>> cách = cách 1 ;
+8 cách <<< f o r >>> cách ( <<< s i z e _ t >>> cách i cách = cách 0 ; cách i cách + cách 1 cách < cách <<< f i x e d _ n o d e s >>> . <<< s i z e >>> ( ) ; cách + + i ) cách {
+12 cách long cách long cách len 2 cách = cách <<< f i x e d _ n o d e s >>> [ i + 1 ] . <<< f i r s t >>> 2 cách - cách <<< f i x e d _ n o d e s >>> [ i ] . <<< f i r s t >>> 2 cách - cách 1 ; cách / / cách số cách vị cách trí
+12 cách long cách long cách <<< f r e e >>> cách = cách <<< f i x e d _ n o d e s >>> [ i + 1 ] . <<< s e c o n d >>> cách - cách <<< f i x e d _ n o d e s >>> [ i ] . <<< s e c o n d >>> cách - cách 1 ; cách / / cách số cách giá cách trị
+12 cách <<< i f >>> cách ( <<< f r e e >>> cách < cách len ) cách { cách <<< a n s >>> cách = cách 0 ; cách <<< b r e a k >>> ; cách }
+12 cách <<< a n s >>> cách = cách <<< a n s >>> cách * cách <<< C _ l a r g e _ n >>> ( <<< f r e e >>> , cách ( <<< i n t >>> ) len ) cách % cách <<< M O D >>> ;
+8 cách }
 
-Sau khi xét hết thanh , câu trả lời là giá trị nhỏ nhất của <<< d p >>> [ x ] với x ≥ <<< n e e d >>> .
-
-4 . Chi tiết cần lưu ý
-Độ phức tạp :
-
-Số phần tử của <<< d p >>> ≤ tổng độ dài các thanh ( ≤ 10 000 ) .
-
-Vòng lặp : N × 10 000 tối đa ≈ 1 triệu – hoàn toàn ổn cho tới 20 test .
-
-Kiểu số : chi phí có thể rất lớn ( a tới 10⁶ ; ( L - 1 ) ² tới 9 801 ) ⇒ dùng biến 64 <<< b i t >>> .
-
-Thanh dài 1 không bao giờ cắt ; cứ cộng thẳng vào kết quả ban đầu ( đã xử lý ở bước 2 ) .
-
-5 . Tóm tắt luồng giải
-Đọc dữ liệu , tách K , dãy S , hệ số a , b .
-
-Đếm sẵn các thanh dài 1 → giảm K .
-
-Nếu đã đủ , in 0 . Ngược lại :
-
-Khởi tạo <<< d p >>> .
-
-Với từng thanh dài ≥ 2 : cập nhật <<< d p >>> như mô tả .
-
-Tìm <<< d p >>> [ x ] nhỏ nhất với x ≥ <<< n e e d >>> → in ra .
-
-Sau khi hiểu quy trình trên , bạn có thể hiện thực bằng ngôn ngữ mình muốn mà không cần dùng lambda hay cú pháp phức tạp .
+8 cách <<< c o u t >>> cách < < cách <<< a n s >>> cách < < cách ' \ n ' ;
+4 cách }
+4 cách <<< r e t u r n >>> cách 0 ;
+}
