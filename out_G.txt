@@ -1,1 +1,34 @@
-<<< C o d e >>> cách C
+# <<< i n c l u d e >>> cách < <<< b i t s >>> / <<< s t d c >>> + + . h >
+<<< u s i n g >>> cách <<< n a m e s p a c e >>> cách <<< s t d >>> ;
+
+<<< i n t >>> cách <<< m a i n >>> ( ) cách {
+4 cách <<< i o s >>> : : <<< s y n c _ w i t h _ s t d i o >>> ( <<< f a l s e >>> ) ;
+4 cách <<< c i n >>> . <<< t i e >>> ( <<< n u l l p t r >>> ) ;
+4 cách <<< i n t >>> cách n , cách m ;
+4 cách <<< i f >>> cách ( ! ( <<< c i n >>> cách > > cách n cách > > cách m ) ) cách <<< r e t u r n >>> cách 0 ;
+4 cách <<< i f >>> cách ( n cách > = cách m ) cách {
+8 cách <<< c o u t >>> cách < < cách " <<< Y E S >>> \ n " ;
+8 cách <<< r e t u r n >>> cách 0 ;
+4 cách }
+4 cách <<< b i t s e t >>> < 1000 > cách <<< d p >>> , cách <<< m a s k >>> ;
+4 cách <<< f o r >>> cách ( <<< i n t >>> cách i cách = cách 0 ; cách i cách < cách m ; cách + + i ) cách <<< m a s k >>> . <<< s e t >>> ( i ) ;
+4 cách <<< f o r >>> cách ( <<< i n t >>> cách i cách = cách 0 ; cách i cách < cách n ; cách + + i ) cách {
+8 cách long cách long cách x ; cách <<< c i n >>> cách > > cách x ;
+8 cách <<< i n t >>> cách r cách = cách x cách % cách m ;
+8 cách <<< i f >>> cách ( r cách = = cách 0 ) cách {
+12 cách <<< c o u t >>> cách < < cách " <<< Y E S >>> \ n " ;
+12 cách <<< r e t u r n >>> cách 0 ;
+8 cách }
+8 cách <<< b i t s e t >>> < 1000 > cách <<< n x t >>> cách = cách ( <<< d p >>> cách < < cách r ) ;
+8 cách <<< i f >>> cách ( r ) cách <<< n x t >>> cách | = cách ( <<< d p >>> cách > > cách ( m cách - cách r ) ) ;
+8 cách <<< n x t >>> [ r ] cách = cách 1 ;
+8 cách <<< d p >>> cách | = cách <<< n x t >>> ;
+8 cách <<< d p >>> cách & = cách <<< m a s k >>> ;
+8 cách <<< i f >>> cách ( <<< d p >>> [ 0 ] ) cách {
+12 cách <<< c o u t >>> cách < < cách " <<< Y E S >>> \ n " ;
+12 cách <<< r e t u r n >>> cách 0 ;
+8 cách }
+4 cách }
+4 cách <<< c o u t >>> cách < < cách " NO \ n " ;
+4 cách <<< r e t u r n >>> cách 0 ;
+}
