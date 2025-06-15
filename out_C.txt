@@ -1,1 +1,15 @@
-Bài C
+Nếu n ≥ m , nhờ nguyên lý <<< D i r i c h l e t >>> chắc chắn tồn tại <<< s u b s e q u e n c e >>> có tổng chia hết cho m → in <<< Y E S >>> .
+
+Trường hợp còn lại ( n < m ) dùng quy hoạch động theo phần dư <<< m o d u l o >>> m .
+
+Mỗi trạng thái <<< d p >>> [ t ] cho biết có thể đạt tổng có dư t bằng cách chọn vài phần tử đã đọc .
+
+Duyệt từng số ai , lấy r = ai <<< m o d >>> m . Nếu r = 0 là đáp án <<< Y E S >>> ngay .
+
+Giá trị mới đạt được là r và mọi ( t + r ) <<< m o d >>> m với t đang có .
+
+Thực thi nhanh bằng <<< b i t s e t >>> < 1000 > : dịch trái r <<< b i t >>> và <<< O R >>> thêm phần <<< w r a p >>> - <<< a r o u n d >>> ( <<< d p >>> > > ( m - r ) ) .
+
+Sau khi cập nhật , nếu <<< b i t >>> 0 sáng nghĩa là có tổng chia hết cho m → <<< Y E S >>> .
+
+Kết thúc vòng lặp mà <<< b i t >>> 0 chưa sáng thì in NO .
