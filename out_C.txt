@@ -1,15 +1,43 @@
-Nếu n ≥ m , nhờ nguyên lý <<< D i r i c h l e t >>> chắc chắn tồn tại <<< s u b s e q u e n c e >>> có tổng chia hết cho m → in <<< Y E S >>> .
-
-Trường hợp còn lại ( n < m ) dùng quy hoạch động theo phần dư <<< m o d u l o >>> m .
-
-Mỗi trạng thái <<< d p >>> [ t ] cho biết có thể đạt tổng có dư t bằng cách chọn vài phần tử đã đọc .
-
-Duyệt từng số ai , lấy r = ai <<< m o d >>> m . Nếu r = 0 là đáp án <<< Y E S >>> ngay .
-
-Giá trị mới đạt được là r và mọi ( t + r ) <<< m o d >>> m với t đang có .
-
-Thực thi nhanh bằng <<< b i t s e t >>> < 1000 > : dịch trái r <<< b i t >>> và <<< O R >>> thêm phần <<< w r a p >>> - <<< a r o u n d >>> ( <<< d p >>> > > ( m - r ) ) .
-
-Sau khi cập nhật , nếu <<< b i t >>> 0 sáng nghĩa là có tổng chia hết cho m → <<< Y E S >>> .
-
-Kết thúc vòng lặp mà <<< b i t >>> 0 chưa sáng thì in NO .
+2109 / D
+# <<< i n c l u d e >>> cách < <<< b i t s >>> / <<< s t d c >>> + + . h >
+<<< u s i n g >>> cách <<< n a m e s p a c e >>> cách <<< s t d >>> ;
+<<< i n t >>> cách <<< m a i n >>> ( ) {
+4 cách <<< i o s >>> : : <<< s y n c _ w i t h _ s t d i o >>> ( <<< f a l s e >>> ) ;
+4 cách <<< c i n >>> . <<< t i e >>> ( <<< n u l l p t r >>> ) ;
+4 cách <<< i n t >>> cách t ; cách <<< c i n >>> > > t ;
+4 cách <<< w h i l e >>> ( t - - ) {
+8 cách <<< i n t >>> cách n , m , l ; cách <<< c i n >>> > > n > > m > > l ;
+8 cách long cách long cách S = 0 ;
+8 cách <<< f o r >>> ( <<< i n t >>> cách i = 0 , x ; i < l ; i + + ) { <<< c i n >>> > > x ; cách S + = x ; }
+8 cách vector < vector < <<< i n t >>> > > cách g ( n + 1 ) ;
+8 cách <<< f o r >>> ( <<< i n t >>> cách i = 0 , u , v ; i < m ; i + + ) {
+12 cách <<< c i n >>> > > u > > v ;
+12 cách g [ u ] . <<< p u s h _ b a c k >>> ( v ) ;
+12 cách g [ v ] . <<< p u s h _ b a c k >>> ( u ) ;
+8 cách }
+8 cách vector < <<< i n t >>> > cách <<< d i s t >>> ( n + 1 , - 1 ) , cách col ( n + 1 , - 1 ) ;
+8 cách <<< q u e u e >>> < <<< i n t >>> > cách q ; cách q . <<< p u s h >>> ( 1 ) ; cách <<< d i s t >>> [ 1 ] = 0 ; cách col [ 1 ] = 0 ;
+8 cách <<< b o o l >>> cách <<< b i p >>> = <<< t r u e >>> ;
+8 cách <<< w h i l e >>> ( ! q . <<< e m p t y >>> ( ) ) {
+12 cách <<< i n t >>> cách u = q . <<< f r o n t >>> ( ) ; cách q . pop ( ) ;
+12 cách <<< f o r >>> ( <<< i n t >>> cách v : g [ u ] ) {
+16 cách <<< i f >>> ( <<< d i s t >>> [ v ] = = - 1 ) {
+20 cách <<< d i s t >>> [ v ] = <<< d i s t >>> [ u ] + 1 ;
+20 cách col [ v ] = col [ u ] ^ 1 ;
+20 cách q . <<< p u s h >>> ( v ) ;
+16 cách } <<< e l s e >>> cách <<< i f >>> ( col [ v ] = = col [ u ] ) cách <<< b i p >>> = <<< f a l s e >>> ;
+12 cách }
+8 cách }
+8 cách <<< s t r i n g >>> cách <<< a n s >>> ( n , ' 0 ' ) ;
+8 cách <<< i f >>> ( <<< b i p >>> ) {
+12 cách <<< f o r >>> ( <<< i n t >>> cách i = 1 ; i < = n ; i + + )
+16 cách <<< i f >>> ( <<< d i s t >>> [ i ] < = S cách & & cách ( ( S - <<< d i s t >>> [ i ] ) & 1 ) = = 0 ) cách <<< a n s >>> [ i - 1 ] = ' 1 ' ;
+8 cách } <<< e l s e >>> {
+12 cách <<< f o r >>> ( <<< i n t >>> cách i = 2 ; i < = n ; i + + )
+16 cách <<< i f >>> ( <<< d i s t >>> [ i ] < = S ) cách <<< a n s >>> [ i - 1 ] = ' 1 ' ;
+12 cách <<< i f >>> ( S ! = 1 ) cách <<< a n s >>> [ 0 ] = ' 1 ' ;
+8 cách }
+8 cách <<< c o u t >>> < < <<< a n s >>> < < " \ n " ;
+4 cách }
+4 cách <<< r e t u r n >>> cách 0 ;
+}

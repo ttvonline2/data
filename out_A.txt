@@ -1,105 +1,63 @@
+2114 / F
 # <<< i n c l u d e >>> cách < <<< b i t s >>> / <<< s t d c >>> + + . h >
 <<< u s i n g >>> cách <<< n a m e s p a c e >>> cách <<< s t d >>> ;
-
-<<< s t r u c t >>> cách <<< S C C >>> cách {
-4 cách <<< i n t >>> cách n ;
-4 cách vector < vector < <<< i n t >>> > > cách <<< a d j >>> ;
-4 cách vector < <<< i n t >>> > cách <<< c o m p >>> , cách <<< l o w >>> , cách num , cách <<< s t >>> ;
-4 cách <<< i n t >>> cách tim { } , cách <<< c o m p C n t >>> { } ;
-4 cách <<< S C C >>> ( <<< i n t >>> cách n ) cách : cách n ( n ) , cách <<< a d j >>> ( n ) cách { }
-4 cách <<< v o i d >>> cách <<< a d d E d g e >>> ( <<< i n t >>> cách u , <<< i n t >>> cách v ) { cách <<< a d j >>> [ u ] . <<< p u s h _ b a c k >>> ( v ) ; }
-4 cách <<< v o i d >>> cách <<< d f s >>> ( <<< i n t >>> cách u ) {
-8 cách <<< l o w >>> [ u ] = num [ u ] = + + tim ; cách <<< s t >>> . <<< p u s h _ b a c k >>> ( u ) ;
-8 cách <<< f o r >>> ( <<< i n t >>> cách v : <<< a d j >>> [ u ] ) {
-12 cách <<< i f >>> ( ! num [ v ] ) cách <<< d f s >>> ( v ) , cách <<< l o w >>> [ u ] = min ( <<< l o w >>> [ u ] , <<< l o w >>> [ v ] ) ;
-12 cách <<< e l s e >>> cách <<< i f >>> ( ! <<< c o m p >>> [ v ] ) cách <<< l o w >>> [ u ] = min ( <<< l o w >>> [ u ] , num [ v ] ) ;
-8 cách }
-8 cách <<< i f >>> ( <<< l o w >>> [ u ] = = num [ u ] ) {
-12 cách + + <<< c o m p C n t >>> ;
-12 cách <<< w h i l e >>> ( <<< t r u e >>> ) {
-16 cách <<< i n t >>> cách v = <<< s t >>> . <<< b a c k >>> ( ) ; cách <<< s t >>> . <<< p o p _ b a c k >>> ( ) ;
-16 cách <<< c o m p >>> [ v ] = <<< c o m p C n t >>> ;
-16 cách <<< i f >>> ( v = = u ) cách <<< b r e a k >>> ;
-12 cách }
-8 cách }
+# <<< i n c l u d e >>> cách < <<< n u m e r i c >>> >
+<<< c o n s t >>> cách <<< i n t >>> cách <<< M A X N >>> cách = cách 1 ' 000 ' 000 ;
+<<< i n t >>> cách <<< s p f >>> [ <<< M A X N >>> cách + cách 1 ] ;
+<<< v o i d >>> cách <<< s i e v e >>> ( ) cách {
+4 cách <<< f o r >>> cách ( <<< i n t >>> cách i cách = cách 2 ; cách i cách < = cách <<< M A X N >>> ; cách + + i ) cách <<< i f >>> cách ( ! <<< s p f >>> [ i ] )
+8 cách <<< f o r >>> cách ( <<< i n t >>> cách j cách = cách i ; cách j cách < = cách <<< M A X N >>> ; cách j cách + = cách i ) cách <<< i f >>> cách ( ! <<< s p f >>> [ j ] ) cách <<< s p f >>> [ j ] cách = cách i ;
+}
+long cách long cách <<< k g l >>> ;
+long cách long cách <<< m a x D i v >>> ( long cách long cách n ) cách {
+4 cách vector < <<< p a i r >>> < <<< i n t >>> , <<< i n t >>> > > cách f ;
+4 cách long cách long cách m cách = cách n ;
+4 cách <<< w h i l e >>> cách ( m cách > cách 1 ) cách {
+8 cách <<< i n t >>> cách p cách = cách <<< s p f >>> [ m ] , cách c cách = cách 0 ;
+8 cách <<< w h i l e >>> cách ( m cách % cách p cách = = cách 0 ) cách { cách m cách / = cách p ; cách + + c ; cách }
+8 cách f . <<< p u s h _ b a c k >>> ( { p , cách c } ) ;
 4 cách }
-4 cách vector < <<< i n t >>> > cách run ( ) {
-8 cách <<< c o m p >>> . <<< a s s i g n >>> ( n , 0 ) ; cách <<< l o w >>> . <<< a s s i g n >>> ( n , 0 ) ; cách num . <<< a s s i g n >>> ( n , 0 ) ; cách <<< s t >>> . <<< c l e a r >>> ( ) ;
-8 cách <<< f o r >>> ( <<< i n t >>> cách i = 0 ; i < n ; i + + ) cách <<< i f >>> ( ! num [ i ] ) cách <<< d f s >>> ( i ) ;
-8 cách <<< r e t u r n >>> cách <<< c o m p >>> ;
+4 cách long cách long cách <<< b e s t >>> cách = cách 1 ;
+4 cách <<< f u n c t i o n >>> < <<< v o i d >>> ( <<< i n t >>> , long cách long ) > cách <<< d f s >>> cách = cách [ & ] ( <<< i n t >>> cách <<< i d x >>> , cách long cách long cách cur ) cách {
+8 cách <<< i f >>> cách ( cur cách > cách <<< k g l >>> ) cách <<< r e t u r n >>> ;
+8 cách <<< b e s t >>> cách = cách <<< m a x >>> ( <<< b e s t >>> , cách cur ) ;
+8 cách <<< i f >>> cách ( <<< i d x >>> cách = = cách ( <<< i n t >>> ) f . <<< s i z e >>> ( ) ) cách <<< r e t u r n >>> ;
+8 cách long cách long cách <<< v a l >>> cách = cách 1 ;
+8 cách <<< f o r >>> cách ( <<< i n t >>> cách i cách = cách 0 ; cách i cách < = cách f [ <<< i d x >>> ] . <<< s e c o n d >>> ; cách + + i ) cách {
+12 cách <<< d f s >>> ( <<< i d x >>> cách + cách 1 , cách cur cách * cách <<< v a l >>> ) ;
+12 cách <<< v a l >>> cách * = cách f [ <<< i d x >>> ] . <<< f i r s t >>> ;
+12 cách <<< i f >>> cách ( <<< v a l >>> cách > cách <<< k g l >>> ) cách <<< b r e a k >>> ;
+8 cách }
+4 cách } ;
+4 cách <<< d f s >>> ( 0 , cách 1 ) ;
+4 cách <<< r e t u r n >>> cách <<< b e s t >>> ;
+}
+long cách long cách <<< s t e p s >>> ( long cách long cách n ) cách {
+4 cách <<< i f >>> cách ( n cách = = cách 1 ) cách <<< r e t u r n >>> cách 0 ;
+4 cách <<< i f >>> cách ( <<< k g l >>> cách = = cách 1 ) cách <<< r e t u r n >>> cách - 1 ;
+4 cách long cách long cách <<< c n t >>> cách = cách 0 ;
+4 cách <<< w h i l e >>> cách ( n cách > cách 1 ) cách {
+8 cách <<< i f >>> cách ( n cách < = cách <<< k g l >>> ) cách { cách + + <<< c n t >>> ; cách <<< b r e a k >>> ; cách }
+8 cách long cách long cách d cách = cách <<< m a x D i v >>> ( n ) ;
+8 cách <<< i f >>> cách ( d cách = = cách 1 ) cách <<< r e t u r n >>> cách - 1 ;
+8 cách n cách / = cách d ;
+8 cách + + <<< c n t >>> ;
 4 cách }
-} ;
-
-<<< i n t >>> cách <<< m a i n >>> ( ) {
+4 cách <<< r e t u r n >>> cách <<< c n t >>> ;
+}
+<<< i n t >>> cách <<< m a i n >>> ( ) cách {
 4 cách <<< i o s >>> : : <<< s y n c _ w i t h _ s t d i o >>> ( <<< f a l s e >>> ) ;
 4 cách <<< c i n >>> . <<< t i e >>> ( <<< n u l l p t r >>> ) ;
-4 cách <<< i n t >>> cách T ; cách <<< i f >>> ( ! ( <<< c i n >>> > > T ) ) cách <<< r e t u r n >>> cách 0 ;
-4 cách <<< w h i l e >>> ( T - - ) {
-8 cách <<< i n t >>> cách N , M , P ; cách long cách long cách K ;
-8 cách <<< c i n >>> > > N > > M > > P > > K ;
-8 cách vector < <<< i n t >>> > cách C ( N ) ;
-8 cách <<< f o r >>> ( <<< i n t >>> cách i = 0 ; i < N ; i + + ) cách <<< c i n >>> > > C [ i ] ;
-8 cách <<< S C C >>> cách <<< s c c >>> ( N ) ;
-8 cách vector < <<< p a i r >>> < <<< i n t >>> , <<< i n t >>> > > cách <<< e d g e s >>> ;
-8 cách <<< f o r >>> ( <<< i n t >>> cách i = 0 ; i < M ; i + + ) {
-12 cách <<< i n t >>> cách x , y ; <<< c i n >>> > > x > > y ; cách - - x ; - - y ;
-12 cách <<< s c c >>> . <<< a d d E d g e >>> ( x , y ) ;
-12 cách <<< e d g e s >>> . <<< e m p l a c e _ b a c k >>> ( x , y ) ;
-8 cách }
-8 cách vector < <<< i n t >>> > cách <<< i d >>> = <<< s c c >>> . run ( ) ;
-8 cách <<< i n t >>> cách S = * <<< m a x _ e l e m e n t >>> ( <<< i d >>> . <<< b e g i n >>> ( ) , <<< i d >>> . <<< e n d >>> ( ) ) + 1 ; cách / / cách 1 - <<< b a s e d >>> cách <<< i d s >>>
-8 cách vector < <<< i n t >>> > cách <<< s z >>> ( S , 0 ) ;
-8 cách <<< f o r >>> ( <<< i n t >>> cách v : <<< i d >>> ) cách + + <<< s z >>> [ v ] ;
-8 cách vector < <<< u n o r d e r e d _ m a p >>> < <<< i n t >>> , <<< c h a r >>> > > cách <<< m p >>> ( S ) ; 6 cách / / cách <<< n e i g h b o u r >>> cách - > cách <<< w e i g h t >>>
-8 cách <<< f o r >>> ( <<< a u t o >>> cách [ u , v ] : <<< e d g e s >>> ) {
-12 cách <<< i n t >>> cách a = <<< i d >>> [ u ] , cách b = <<< i d >>> [ v ] ;
-12 cách <<< i f >>> ( a = = b ) cách <<< c o n t i n u e >>> ;
-12 cách <<< c h a r >>> cách w cách = cách ( C [ u ] > C [ v ] ) ;
-12 cách <<< a u t o >>> cách <<< i t >>> = <<< m p >>> [ a ] . <<< f i n d >>> ( b ) ;
-12 cách <<< i f >>> ( <<< i t >>> = = <<< m p >>> [ a ] . <<< e n d >>> ( ) | | <<< i t >>> - > <<< s e c o n d >>> < w ) cách <<< m p >>> [ a ] [ b ] = w ;
-8 cách }
-8 cách vector < vector < <<< p a i r >>> < <<< i n t >>> , <<< c h a r >>> > > > cách <<< d a g >>> ( S ) ;
-8 cách vector < <<< i n t >>> > cách <<< i n d e g >>> ( S , 0 ) ;
-8 cách <<< f o r >>> ( <<< i n t >>> cách a = 0 ; a < S ; a + + ) {
-12 cách <<< f o r >>> ( <<< a u t o >>> cách [ b , w ] : <<< m p >>> [ a ] ) {
-16 cách <<< d a g >>> [ a ] . <<< p u s h _ b a c k >>> ( { b , w } ) ;
-16 cách + + <<< i n d e g >>> [ b ] ;
-12 cách }
-8 cách }
-8 cách <<< c o n s t >>> cách long cách long cách <<< I N F >>> = cách ( <<< 1 L L >>> < < 60 ) ;
-8 cách vector < <<< c h a r >>> > cách <<< i n f >>> ( S , 0 ) ;
-8 cách <<< q u e u e >>> < <<< i n t >>> > cách q ;
-8 cách <<< f o r >>> ( <<< i n t >>> cách s = 0 ; s < S ; s + + ) cách <<< i f >>> ( <<< s z >>> [ s ] > 1 ) { cách <<< i n f >>> [ s ] = 1 ; cách q . <<< p u s h >>> ( s ) ; }
-8 cách <<< w h i l e >>> ( ! q . <<< e m p t y >>> ( ) ) {
-12 cách <<< i n t >>> cách u = q . <<< f r o n t >>> ( ) ; cách q . pop ( ) ;
-12 cách <<< f o r >>> ( <<< a u t o >>> cách [ v , _ ] : <<< d a g >>> [ u ] ) cách <<< i f >>> ( ! <<< i n f >>> [ v ] ) {
-16 cách <<< i n f >>> [ v ] = 1 ; cách q . <<< p u s h >>> ( v ) ;
-12 cách }
-8 cách }
-8 cách vector < long cách long > cách <<< T v a l >>> ( S , 0 ) ;
-8 cách <<< q u e u e >>> < <<< i n t >>> > cách topo ;
-8 cách vector < <<< i n t >>> > cách <<< d e g >>> = <<< i n d e g >>> ;
-8 cách <<< f o r >>> ( <<< i n t >>> cách s = 0 ; s < S ; s + + ) cách <<< i f >>> ( ! <<< i n f >>> [ s ] cách & & cách <<< d e g >>> [ s ] = = 0 ) {
-12 cách topo . <<< p u s h >>> ( s ) ; cách <<< T v a l >>> [ s ] = 1 ;
-8 cách }
-8 cách <<< w h i l e >>> ( ! topo . <<< e m p t y >>> ( ) ) {
-12 cách <<< i n t >>> cách u = topo . <<< f r o n t >>> ( ) ; cách topo . pop ( ) ;
-12 cách <<< f o r >>> ( <<< a u t o >>> cách [ v , w ] : <<< d a g >>> [ u ] ) {
-16 cách <<< i f >>> ( <<< i n f >>> [ v ] ) cách <<< c o n t i n u e >>> ;
-16 cách <<< i f >>> ( <<< T v a l >>> [ v ] < <<< T v a l >>> [ u ] + w ) cách <<< T v a l >>> [ v ] = <<< T v a l >>> [ u ] + w ;
-16 cách <<< i f >>> ( - - <<< d e g >>> [ v ] = = 0 ) cách topo . <<< p u s h >>> ( v ) ;
-12 cách }
-8 cách }
-8 cách long cách long cách <<< a n s >>> = 0 ;
-8 cách <<< f o r >>> ( <<< i n t >>> cách i = 0 ; i < N ; i + + ) {
-12 cách <<< i n t >>> cách s = <<< i d >>> [ i ] ;
-12 cách <<< i f >>> ( <<< i n f >>> [ s ] ) cách <<< a n s >>> + = K ;
-12 cách <<< e l s e >>> {
-16 cách long cách long cách d = ( <<< T v a l >>> [ s ] - 1 ) * <<< 1 L L >>> * P cách + cách ( C [ i ] - 1 ) ;
-16 cách <<< a n s >>> + = cách ( d > = K ) ? cách K cách : cách d ;
-12 cách }
-8 cách }
-8 cách <<< c o u t >>> < < <<< a n s >>> < < " \ n " ;
+4 cách <<< s i e v e >>> ( ) ;
+4 cách <<< i n t >>> cách t ; cách <<< i f >>> cách ( ! ( <<< c i n >>> cách > > cách t ) ) cách <<< r e t u r n >>> cách 0 ;
+4 cách <<< w h i l e >>> cách ( t - - ) cách {
+8 cách long cách long cách x , cách y , cách k ; cách <<< c i n >>> cách > > cách x cách > > cách y cách > > cách k ;
+8 cách <<< k g l >>> cách = cách k ;
+8 cách long cách long cách g cách = cách <<< s t d >>> : : <<< g c d >>> ( x , cách y ) ;
+8 cách long cách long cách s cách = cách x cách / cách g , cách r cách = cách y cách / cách g ;
+8 cách long cách long cách a cách = cách <<< s t e p s >>> ( s ) , cách b cách = cách <<< s t e p s >>> ( r ) ;
+8 cách <<< i f >>> cách ( a cách = = cách - 1 cách | | cách b cách = = cách - 1 ) cách <<< c o u t >>> cách < < cách - 1 cách < < cách ' \ n ' ;
+8 cách <<< e l s e >>> cách <<< c o u t >>> cách < < cách a cách + cách b cách < < cách ' \ n ' ;
 4 cách }
 4 cách <<< r e t u r n >>> cách 0 ;
 }

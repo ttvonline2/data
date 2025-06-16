@@ -1,1 +1,103 @@
-<<< C o d e >>> cách B
+Bài 1
+Gọi g = <<< g c d >>> ( x , y ) , tách x = g · s , y = g · r với s , r nguyên tố cùng nhau .
+
+Ta cần thực hiện toàn bộ phép chia để loại s rồi nhân để tạo r .
+
+Bài toán quy về hàm f ( n ) : số thừa số nhỏ nhất ≤ k có tích đúng n .
+
+f ( 1 ) = 0 ; nếu n ≤ k ⇒ f ( n ) = 1 ( một thao tác ) .
+
+Với n > k , luôn chọn d là ước lớn nhất của n không vượt k ; n ← n / d , tăng đếm .
+
+Nếu không tồn tại ước d > 1 ≤ k tại bước nào ⇒ không thể thực hiện .
+
+Tổng số thao tác cần là f ( s ) + f ( r ) ; nếu một trong hai vô nghiệm , in − 1 .
+
+Sử dụng sàng <<< S P F >>> tới 10⁶ để phân tích n và tìm ước lớn nhất nhanh .
+bài 2
+Đếm bốn loại thao tác b → a , c → a , c → b , b → c .
+
+Duyệt danh sách , ghép tối đa hai kiểu cặp hợp lệ : ( c → b rồi b → a ) và ( b → c rồi c → a ) ; lưu số cặp <<< p c b >>> , <<< p b c >>> .
+
+Khi quét s từ trái sang phải , luôn cố giảm ký tự hiện tại xuống nhỏ nhất ( ‘ a ’ < ‘ b ’ < ‘ c ’ ) .
+
+Với ‘ b ’ : đổi thẳng thành ‘ a ’ nếu còn b → a ; nếu hết mà vẫn còn cặp ( b → c , c → a ) thì dùng cặp đó .
+
+Với ‘ c ’ : ưu tiên đổi thẳng thành ‘ a ’ bằng c → a ; nếu không , thử cặp ( c → b , b → a ) ; nếu vẫn không được thì hạ xuống ‘ b ’ bằng c → b .
+
+Mỗi lần dùng một phép hay một cặp , trừ ngay số lượt còn lại để tránh lạm dụng .
+
+Xử lý theo thứ tự vị trí nên luôn ưu tiên các ký tự đầu chuỗi , bảo đảm xâu cuối cùng là nhỏ nhất .
+
+Toàn bộ thuật toán chỉ O ( n + q ) mỗi test , đáp ứng giới hạn 2 · 10⁵ .
+bài 3
+Tổng các phần tử của A là S – tổng số cạnh phải đi .
+
+<<< B F S >>> từ đỉnh 1 sinh mảng <<< d i s t >>> và tô 2 màu ; nếu gặp cạnh nối 2 đỉnh cùng màu ⇒ đồ thị không lưỡng phần ( có chu trình lẻ ) .
+
+Với đồ thị lưỡng phần , một <<< w a l k >>> 1 → i chỉ tồn tại khi dài ≥ <<< d i s t >>> [ i ] và có cùng chẵn - lẻ , nên i đạt được ⇔ <<< d i s t >>> [ i ] ≤ S và ( S − <<< d i s t >>> [ i ] ) chẵn .
+
+Với đồ thị không lưỡng phần , chu trình lẻ cho phép đổi chẵn - lẻ tùy ý ; chỉ cần đi ít nhất <<< d i s t >>> [ i ] cạnh .
+
+Riêng đỉnh 1 không thể về trong đúng 1 bước ( không vòng độ dài 1 ) ; các độ dài khác luôn về được .
+
+Kết hợp quy tắc trên , gán ‘ 1 ’ cho đỉnh thỏa điều kiện , ‘ 0 ’ ngược lại , ghép thành chuỗi .
+
+<<< B F S >>> O ( n + m ) mỗi test , thoải mái trong giới hạn .
+bài 4
+Thuật toán
+
+Với n = 1 :
+
+Lưới chỉ có 1 ô ( 1 , 1 ) = ¬ <<< s ₁ >>> .
+
+Kết quả = 1 nếu <<< s ₁ >>> = ‘ 1 ’ , ngược lại 0 .
+
+Với n = 2 :
+
+Đếm số ‘ 0 ’ trong s .
+
+Nếu đúng 1 ‘ 0 ’ → đáp án = 2 ( hai ô 0 kề nhau ) .
+
+Ngược lại → đáp án = 1 .
+
+Với n ≥ 3
+
+Coi chuỗi s như dãy cột ; hai cột “ 1 1 ” liên tiếp tạo “ hàng rào ” ngăn kết nối ngang .
+
+Tách s thành các đoạn liên tiếp không chứa “ 11 ” .
+
+Với mỗi đoạn [ l , r ] :
+
+đếm z = số cột ‘ 0 ’ ;
+– mỗi cột này đóng góp ( n – 1 ) ô 0 ( toàn cột trừ hàng l = cột ) .
+
+đếm c = số cột ‘ 1 ’ có ít nhất một hàng xung quanh vẫn trong đoạn là ‘ 0 ’
+( tức s [ k ] = ‘ 1 ’ nhưng s [ k – 1 ] = ‘ 0 ’ hoặc s [ k + 1 ] = ‘ 0 ’ ) .
+
+kích thước thành phần liên thông lớn nhất trong đoạn :
+<<< s i z e >>> = z · ( n – 1 ) + c
+( nếu z = 0 thì <<< s i z e >>> = 1 , vì chỉ còn ô chéo ( k , k ) ) .
+
+Kết quả là <<< m a x >>> ( <<< s i z e >>> ) trên mọi đoạn .
+
+Tổng độ phức tạp O ( n ) cho mỗi test , dùng 64 - <<< b i t >>> để lưu kết quả .
+bài 5
+
+Hướng dẫn ngắn gọn ( ≤ 10 dòng )
+
+Nếu vị trí của k không thuộc đoạn [ l , r ] → in − 1 .
+
+Giả lập đường đi của thuật toán <<< b i n a r y >>> - <<< s e a r c h >>> ( chỉ số <<< m i d >>> liên tiếp ) trên [ l , r ] cho tới khi gặp vị trí k .
+
+Với mỗi <<< m i d >>> ≠ <<< p o s ₖ >>> :
+• <<< m i d >>> < <<< p o s ₖ >>> mà p [ <<< m i d >>> ] > k → đếm vào CL .
+• <<< m i d >>> > <<< p o s ₖ >>> mà p [ <<< m i d >>> ] < k → đếm vào CR .
+Đồng thời đếm bao nhiêu giá trị < k ( <<< s m a l l >>> ) và > k ( <<< l a r g e >>> ) xuất hiện trên đường đi .
+
+Số chỉ số bắt buộc phải sắp đặt lại tối thiểu là 2 × <<< m a x >>> ( CL , CR ) .
+
+Nếu CL > CR cần thêm CL − CR giá trị < k từ ngoài đường đi ; số còn lại là ( k − 1 ) − <<< s m a l l >>> .
+Ngược lại , nếu CR > CL cần thêm CR − CL giá trị > k ; số còn lại là ( n − k ) − <<< l a r g e >>> .
+
+Không đủ “ nguồn ” phù hợp → in − 1 ; ngược lại in 0 nếu CL = CR = 0 , hoặc 2 × <<< m a x >>> ( CL , CR ) .

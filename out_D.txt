@@ -1,1 +1,38 @@
-Bài D
+2106 / F
+# <<< i n c l u d e >>> cách < <<< b i t s >>> / <<< s t d c >>> + + . h >
+<<< u s i n g >>> cách <<< n a m e s p a c e >>> cách <<< s t d >>> ;
+<<< u s i n g >>> cách <<< i n t 6 4 >>> cách = cách long cách long ;
+
+<<< i n t >>> cách <<< m a i n >>> ( ) {
+4 cách <<< i o s >>> : : <<< s y n c _ w i t h _ s t d i o >>> ( <<< f a l s e >>> ) ;
+4 cách <<< c i n >>> . <<< t i e >>> ( <<< n u l l p t r >>> ) ;
+4 cách <<< i n t >>> cách t ; cách <<< c i n >>> cách > > cách t ;
+4 cách <<< w h i l e >>> cách ( t - - ) {
+8 cách <<< i n t >>> cách n ; cách <<< s t r i n g >>> cách s ;
+8 cách <<< c i n >>> cách > > cách n cách > > cách s ;
+8 cách <<< i f >>> cách ( n = = 1 ) {
+12 cách <<< c o u t >>> cách < < cách ( s [ 0 ] = = ' 1 ' ) cách < < cách ' \ n ' ;
+12 cách <<< c o n t i n u e >>> ;
+8 cách }
+8 cách <<< i f >>> cách ( n = = 2 ) {
+12 cách <<< i n t >>> cách z cách = cách ( s [ 0 ] = = ' 0 ' ) cách + cách ( s [ 1 ] = = ' 0 ' ) ;
+12 cách <<< c o u t >>> cách < < cách ( z = = 1 cách ? cách 2 cách : cách 1 ) cách < < cách ' \ n ' ;
+12 cách <<< c o n t i n u e >>> ;
+8 cách }
+8 cách long cách long cách <<< a n s >>> cách = cách 0 ;
+8 cách <<< f o r >>> cách ( <<< i n t >>> cách i = 0 ; i < n ; ) {
+12 cách <<< i n t >>> cách l = i , cách r = i ;
+12 cách <<< w h i l e >>> cách ( r + 1 < n cách & & cách ! ( s [ r ] = = ' 1 ' cách & & cách s [ r + 1 ] = = ' 1 ' ) ) cách + + r ;
+12 cách long cách long cách z = 0 , cách c = 0 ;
+12 cách <<< f o r >>> cách ( <<< i n t >>> cách k = l ; k < = r ; + + k ) cách <<< i f >>> cách ( s [ k ] = = ' 0 ' ) cách + + z ;
+12 cách <<< i f >>> cách ( ! z ) { cách <<< a n s >>> = <<< m a x >>> ( <<< a n s >>> , <<< 1 L L >>> ) ; cách i = r + 1 ; cách <<< c o n t i n u e >>> ; cách }
+12 cách <<< f o r >>> cách ( <<< i n t >>> cách k = l ; k < = r ; + + k ) cách <<< i f >>> cách ( s [ k ] = = ' 1 ' ) {
+16 cách <<< i f >>> cách ( ( k > l cách & & cách s [ k - 1 ] = = ' 0 ' ) cách | | cách ( k < r cách & & cách s [ k + 1 ] = = ' 0 ' ) ) cách + + c ;
+12 cách }
+12 cách <<< a n s >>> cách = cách <<< m a x >>> ( <<< a n s >>> , cách z * ( n - <<< 1 L L >>> ) + c ) ;
+12 cách i cách = cách r + 1 ;
+8 cách }
+8 cách <<< c o u t >>> cách < < cách <<< a n s >>> cách < < cách ' \ n ' ;
+4 cách }
+4 cách <<< r e t u r n >>> cách 0 ;
+}

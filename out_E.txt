@@ -1,1 +1,61 @@
-<<< C o d e >>> cách A
+2106 / E
+# <<< i n c l u d e >>> cách < <<< b i t s >>> / <<< s t d c >>> + + . h >
+<<< u s i n g >>> cách <<< n a m e s p a c e >>> cách <<< s t d >>> ;
+
+<<< i n t >>> cách <<< m a i n >>> ( ) cách {
+4 cách <<< i o s >>> : : <<< s y n c _ w i t h _ s t d i o >>> ( <<< f a l s e >>> ) ;
+4 cách <<< c i n >>> . <<< t i e >>> ( <<< n u l l p t r >>> ) ;
+4 cách <<< i n t >>> cách t ;
+4 cách <<< i f >>> cách ( ! ( <<< c i n >>> cách > > cách t ) ) cách <<< r e t u r n >>> cách 0 ;
+4 cách <<< w h i l e >>> cách ( t - - ) cách {
+8 cách <<< i n t >>> cách n , cách q ;
+8 cách <<< c i n >>> cách > > cách n cách > > cách q ;
+8 cách vector < <<< i n t >>> > cách p ( n cách + cách 1 ) , cách <<< p o s >>> ( n cách + cách 1 ) ;
+8 cách <<< f o r >>> cách ( <<< i n t >>> cách i cách = cách 1 ; cách i cách < = cách n ; cách + + i ) cách {
+12 cách <<< c i n >>> cách > > cách p [ i ] ;
+12 cách <<< p o s >>> [ p [ i ] ] cách = cách i ;
+8 cách }
+8 cách <<< w h i l e >>> cách ( q - - ) cách {
+12 cách <<< i n t >>> cách l , cách r , cách k ;
+12 cách <<< c i n >>> cách > > cách l cách > > cách r cách > > cách k ;
+12 cách <<< i n t >>> cách <<< i d x >>> cách = cách <<< p o s >>> [ k ] ;
+12 cách <<< i f >>> cách ( <<< i d x >>> cách < cách l cách | | cách <<< i d x >>> cách > cách r ) cách {
+16 cách <<< c o u t >>> cách < < cách - 1 cách < < cách ' \ n ' ;
+16 cách <<< c o n t i n u e >>> ;
+12 cách }
+12 cách <<< i n t >>> cách <<< l o w >>> cách = cách l , cách <<< h i g h >>> cách = cách r ;
+12 cách <<< i n t >>> cách cl cách = cách 0 , cách cr cách = cách 0 , cách <<< s m a l l >>> cách = cách 0 , cách <<< l a r g e >>> cách = cách 0 ;
+12 cách <<< w h i l e >>> cách ( <<< t r u e >>> ) cách {
+16 cách <<< i n t >>> cách m cách = cách ( <<< l o w >>> cách + cách <<< h i g h >>> ) cách / cách 2 ;
+16 cách <<< i f >>> cách ( m cách ! = cách <<< i d x >>> ) cách {
+20 cách <<< i f >>> cách ( p [ m ] cách < cách k ) cách + + <<< s m a l l >>> ;
+20 cách <<< e l s e >>> cách + + <<< l a r g e >>> ;
+20 cách <<< i f >>> cách ( m cách < cách <<< i d x >>> ) cách {
+24 cách <<< i f >>> cách ( p [ m ] cách > cách k ) cách + + cl ;
+20 cách } cách <<< e l s e >>> cách {
+24 cách <<< i f >>> cách ( p [ m ] cách < cách k ) cách + + cr ;
+20 cách }
+16 cách }
+16 cách <<< i f >>> cách ( m cách = = cách <<< i d x >>> ) cách <<< b r e a k >>> ;
+16 cách <<< i f >>> cách ( m cách < cách <<< i d x >>> ) cách <<< l o w >>> cách = cách m cách + cách 1 ;
+16 cách <<< e l s e >>> cách <<< h i g h >>> cách = cách m cách - cách 1 ;
+12 cách }
+12 cách <<< i f >>> cách ( cl cách = = cách 0 cách & & cách cr cách = = cách 0 ) cách {
+16 cách <<< c o u t >>> cách < < cách 0 cách < < cách ' \ n ' ;
+16 cách <<< c o n t i n u e >>> ;
+12 cách }
+12 cách <<< i f >>> cách ( cl cách > = cách cr ) cách {
+16 cách <<< i n t >>> cách <<< n e e d >>> cách = cách cl cách - cách cr ;
+16 cách <<< i n t >>> cách <<< a v a i l >>> cách = cách ( k cách - cách 1 ) cách - cách <<< s m a l l >>> ;
+16 cách <<< i f >>> cách ( <<< n e e d >>> cách > cách <<< a v a i l >>> ) cách <<< c o u t >>> cách < < cách - 1 cách < < cách ' \ n ' ;
+16 cách <<< e l s e >>> cách <<< c o u t >>> cách < < cách 2 cách * cách cl cách < < cách ' \ n ' ;
+12 cách } cách <<< e l s e >>> cách {
+16 cách <<< i n t >>> cách <<< n e e d >>> cách = cách cr cách - cách cl ;
+16 cách <<< i n t >>> cách <<< a v a i l >>> cách = cách ( n cách - cách k ) cách - cách <<< l a r g e >>> ;
+16 cách <<< i f >>> cách ( <<< n e e d >>> cách > cách <<< a v a i l >>> ) cách <<< c o u t >>> cách < < cách - 1 cách < < cách ' \ n ' ;
+16 cách <<< e l s e >>> cách <<< c o u t >>> cách < < cách 2 cách * cách cr cách < < cách ' \ n ' ;
+12 cách }
+8 cách }
+4 cách }
+4 cách <<< r e t u r n >>> cách 0 ;
+}

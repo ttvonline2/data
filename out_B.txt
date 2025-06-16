@@ -1,31 +1,44 @@
+2111 / E
 # <<< i n c l u d e >>> cách < <<< b i t s >>> / <<< s t d c >>> + + . h >
 <<< u s i n g >>> cách <<< n a m e s p a c e >>> cách <<< s t d >>> ;
-vector < <<< i n t >>> > cách <<< s e g >>> , a ;
-<<< i n t >>> cách N ;
-<<< v o i d >>> cách <<< b u i l d >>> ( <<< i n t >>> cách <<< i d x >>> , <<< i n t >>> cách l , <<< i n t >>> cách r , <<< b o o l >>> cách <<< i s O r >>> ) {
-4 cách <<< i f >>> ( l = = r ) { <<< s e g >>> [ <<< i d x >>> ] = a [ l ] ; <<< r e t u r n >>> ; }
-4 cách <<< i n t >>> cách m = ( l + r ) / 2 ;
-4 cách <<< b u i l d >>> ( <<< i d x >>> < < 1 , l , m , ! <<< i s O r >>> ) ;
-4 cách <<< b u i l d >>> ( <<< i d x >>> < < 1 | 1 , m + 1 , r , ! <<< i s O r >>> ) ;
-4 cách <<< s e g >>> [ <<< i d x >>> ] = <<< i s O r >>> ? ( <<< s e g >>> [ <<< i d x >>> < < 1 ] | <<< s e g >>> [ <<< i d x >>> < < 1 | 1 ] ) : ( <<< s e g >>> [ <<< i d x >>> < < 1 ] ^ <<< s e g >>> [ <<< i d x >>> < < 1 | 1 ] ) ;
-}
-<<< v o i d >>> cách <<< u p d >>> ( <<< i n t >>> cách <<< i d x >>> , <<< i n t >>> cách l , <<< i n t >>> cách r , <<< i n t >>> cách p , <<< i n t >>> cách v , <<< b o o l >>> cách <<< i s O r >>> ) {
-4 cách <<< i f >>> ( l = = r ) { <<< s e g >>> [ <<< i d x >>> ] = v ; <<< r e t u r n >>> ; }
-4 cách <<< i n t >>> cách m = ( l + r ) / 2 ;
-4 cách <<< i f >>> ( p < = m ) cách <<< u p d >>> ( <<< i d x >>> < < 1 , l , m , p , v , ! <<< i s O r >>> ) ;
-4 cách <<< e l s e >>> cách <<< u p d >>> ( <<< i d x >>> < < 1 | 1 , m + 1 , r , p , v , ! <<< i s O r >>> ) ;
-4 cách <<< s e g >>> [ <<< i d x >>> ] = <<< i s O r >>> ? ( <<< s e g >>> [ <<< i d x >>> < < 1 ] | <<< s e g >>> [ <<< i d x >>> < < 1 | 1 ] ) : ( <<< s e g >>> [ <<< i d x >>> < < 1 ] ^ <<< s e g >>> [ <<< i d x >>> < < 1 | 1 ] ) ;
+long cách long cách <<< p a i r s C o u n t >>> ( <<< c o n s t >>> cách vector < <<< p a i r >>> < <<< c h a r >>> , <<< c h a r >>> > > & cách a , <<< c h a r >>> cách <<< x 1 >>> , <<< c h a r >>> cách <<< y 1 >>> , <<< c h a r >>> cách <<< x 2 >>> , <<< c h a r >>> cách <<< y 2 >>> ) {
+4 cách long cách long cách <<< f i r s t >>> = 0 , <<< r e s >>> = 0 ;
+4 cách <<< f o r >>> ( <<< a u t o >>> cách [ x , y ] : a ) {
+8 cách <<< i f >>> ( x = = <<< x 1 >>> & & y = = <<< y 1 >>> ) + + <<< f i r s t >>> ;
+8 cách <<< e l s e >>> cách <<< i f >>> ( x = = <<< x 2 >>> & & y = = <<< y 2 >>> & & <<< f i r s t >>> ) { - - <<< f i r s t >>> ; + + <<< r e s >>> ; }
+4 cách }
+4 cách <<< r e t u r n >>> cách <<< r e s >>> ;
 }
 <<< i n t >>> cách <<< m a i n >>> ( ) {
 4 cách <<< i o s >>> : : <<< s y n c _ w i t h _ s t d i o >>> ( <<< f a l s e >>> ) ;
 4 cách <<< c i n >>> . <<< t i e >>> ( <<< n u l l p t r >>> ) ;
-4 cách <<< i n t >>> cách n , m ; <<< c i n >>> > > n > > m ;
-4 cách N = 1 < < n ; a . <<< r e s i z e >>> ( N ) ; <<< f o r >>> ( <<< i n t >>> cách & x : a ) <<< c i n >>> > > x ;
-4 cách <<< s e g >>> . <<< a s s i g n >>> ( 4 * N , 0 ) ; <<< b u i l d >>> ( 1 , 0 , N - 1 , n & 1 ) ;
-4 cách <<< w h i l e >>> ( m - - ) {
-8 cách <<< i n t >>> cách p , b ; <<< c i n >>> > > p > > b ; - - p ;
-8 cách <<< u p d >>> ( 1 , 0 , N - 1 , p , b , n & 1 ) ;
-8 cách <<< c o u t >>> < < <<< s e g >>> [ 1 ] < < " \ n " ;
+4 cách <<< i n t >>> cách T ; <<< c i n >>> > > T ;
+4 cách <<< w h i l e >>> ( T - - ) {
+8 cách <<< i n t >>> cách n , q ; <<< c i n >>> > > n > > q ;
+8 cách <<< s t r i n g >>> cách s ; <<< c i n >>> > > s ;
+8 cách vector < <<< p a i r >>> < <<< c h a r >>> , <<< c h a r >>> > > cách <<< o p >>> ( q ) ;
+8 cách long cách long cách ba = 0 , ca = 0 , <<< c b >>> = 0 , <<< b c >>> = 0 ;
+8 cách <<< f o r >>> ( <<< i n t >>> cách i = 0 ; i < q ; + + i ) {
+12 cách <<< c i n >>> > > <<< o p >>> [ i ] . <<< f i r s t >>> > > <<< o p >>> [ i ] . <<< s e c o n d >>> ;
+12 cách <<< i f >>> ( <<< o p >>> [ i ] cách = = cách <<< m a k e _ p a i r >>> ( ' b ' , ' a ' ) ) + + ba ;
+12 cách <<< e l s e >>> cách <<< i f >>> ( <<< o p >>> [ i ] = = <<< m a k e _ p a i r >>> ( ' c ' , ' a ' ) ) + + ca ;
+12 cách <<< e l s e >>> cách <<< i f >>> ( <<< o p >>> [ i ] = = <<< m a k e _ p a i r >>> ( ' c ' , ' b ' ) ) + + <<< c b >>> ;
+12 cách <<< e l s e >>> cách <<< i f >>> ( <<< o p >>> [ i ] = = <<< m a k e _ p a i r >>> ( ' b ' , ' c ' ) ) + + <<< b c >>> ;
+8 cách }
+8 cách long cách long cách <<< p c b >>> = <<< p a i r s C o u n t >>> ( <<< o p >>> , ' c ' , ' b ' , ' b ' , ' a ' ) ;
+8 cách long cách long cách <<< p b c >>> = <<< p a i r s C o u n t >>> ( <<< o p >>> , ' b ' , ' c ' , ' c ' , ' a ' ) ;
+8 cách <<< s t r i n g >>> cách <<< r e s >>> = s ;
+8 cách <<< f o r >>> ( <<< c h a r >>> cách & c : <<< r e s >>> ) {
+12 cách <<< i f >>> ( c = = ' b ' ) {
+16 cách <<< i f >>> ( ba ) { c = ' a ' ; - - ba ; }
+16 cách <<< e l s e >>> cách <<< i f >>> ( <<< p b c >>> & & <<< b c >>> & & ca ) { c = ' a ' ; - - <<< p b c >>> ; - - <<< b c >>> ; - - ca ; }
+12 cách } <<< e l s e >>> cách <<< i f >>> ( c = = ' c ' ) {
+16 cách <<< i f >>> ( ca ) { c = ' a ' ; - - ca ; }
+16 cách <<< e l s e >>> cách <<< i f >>> ( <<< p c b >>> & & <<< c b >>> & & ba ) { c = ' a ' ; - - <<< p c b >>> ; - - <<< c b >>> ; - - ba ; }
+16 cách <<< e l s e >>> cách <<< i f >>> ( <<< c b >>> ) { c = ' b ' ; - - <<< c b >>> ; }
+12 cách }
+8 cách }
+8 cách <<< c o u t >>> < < <<< r e s >>> < < " \ n " ;
 4 cách }
 4 cách <<< r e t u r n >>> cách 0 ;
 }
